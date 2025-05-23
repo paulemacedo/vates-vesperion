@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './ui/Card'
+import Carousel from './ui/Carousel'
 
 const Precos = () => {
   const planos = [
@@ -8,18 +9,21 @@ const Precos = () => {
       price: 'R$ 5,00',
       originalPrice: 'R$ 10,00',
       description: 'Resposta direta para uma dúvida específica',
+      indisponivel: false, // ou true para marcar como indisponível
     },
     {
       title: '5 PERGUNTAS',
       price: 'R$ 25,00',
       originalPrice: 'R$ 45,00',
       description: 'Consulta mais completa para múltiplas questões',
+      indisponivel: false,
     },
     {
       title: 'MANDALA DA VIDA',
       price: 'R$ 50,00',
       originalPrice: 'R$ 75,00',
       description: 'Leitura completa abrangendo todos os aspectos da vida',
+      indisponivel: false,
     },
   ]
 
@@ -30,7 +34,7 @@ const Precos = () => {
           Tabela de Preços
         </h2>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <Carousel slidesToShow={3}>
           {planos.map((plano, index) => (
             <Card
               key={index}
@@ -40,9 +44,10 @@ const Precos = () => {
               description={plano.description}
               icon={plano.icon}
               variant="preco"
+              indisponivel={plano.indisponivel}
             />
           ))}
-        </div>
+        </Carousel>
       </div>
     </section>
   )

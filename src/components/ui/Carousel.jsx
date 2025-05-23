@@ -91,6 +91,7 @@ const Carousel = ({ children, slidesToShow = 3, ...props }) => {
     dots: true,
     infinite: false,
     speed: 500,
+    slidesToShow: visibleSlides,
     arrows: false, 
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 3 } },

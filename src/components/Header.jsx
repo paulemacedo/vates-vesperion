@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { HiMenu, HiX } from 'react-icons/hi'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -10,8 +11,8 @@ const Header = () => {
     { href: '#leituras', label: 'Leituras' },
     { href: '#precos', label: 'Preços' },
     { href: '#servicos', label: 'Serviços' },
-    { href: '#sobre', label: 'Sobre' },
     { href: '#faq', label: 'FAQ' },
+    { href: '#depoimentos', label: 'Depoimentos' },
   ]
 
   return (

@@ -45,7 +45,7 @@ const Servicos = () => {
           Serviços Místicos
         </h2>
 
-        <Carousel slidesToShow={3.1}>
+        <Carousel>
           {servicos.map((servico, index) => (
             <Card
               icon={servico.icon}
@@ -53,7 +53,6 @@ const Servicos = () => {
               title={servico.title}
               description={servico.description}
               variant='servico'
-              className="pt-0 mx-2"
               indisponivel={servico.indisponivel}
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 40 }}

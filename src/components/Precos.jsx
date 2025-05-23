@@ -34,7 +34,7 @@ const Precos = () => {
           Tabela de Preços
         </h2>
 
-        <Carousel slidesToShow={3}>
+        <Carousel>
           {planos.map((plano, index) => (
             <Card
               key={index}

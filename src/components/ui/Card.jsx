@@ -13,7 +13,7 @@ const Card = ({
 }) => {
   return (
     <motion.div
-      className={`border border-gold rounded-lg p-6 m-2 text-center transition-shadow ${className} ${indisponivel ? 'bg-gray-700 opacity-60 grayscale relative pointer-events-none' : 'bg-midnight'} max-w-xs mx-auto`}
+      className={`border border-gold rounded-lg m-2 text-center transition-shadow ${className} ${indisponivel ? 'bg-gray-700 opacity-60 grayscale relative pointer-events-none' : 'bg-midnight'} max-w-xs mx-auto`}
       style={{ minHeight: '192px' }}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}

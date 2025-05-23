@@ -52,7 +52,22 @@ const Arrow = ({ direction, onClick, disabled }) => {
 const Carousel = ({ children, slidesToShow = 1, ...props }) => {
   const sliderRef = useRef(null)
   const [current, setCurrent] = useState(0)
+  const [visibleSlides, setVisibleSlides] = useState(slidesToShow)
   const slideCount = React.Children.count(children)
+  
+    // Atualiza slides visíveis conforme o breakpoint
+    const handleResize = () => {
+      if (window.innerWidth < 768) setVisibleSlides(1)
+      else if (window.innerWidth < 1024) setVisibleSlides(2)
+      else setVisibleSlides(slidesToShow)
+    }
+  
+    React.useEffect(() => {
+      handleResize()
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }, [slidesToShow])
+  
 
   // Injeta CSS para ocultar as setas padrão
   React.useEffect(() => {
@@ -68,18 +83,12 @@ const Carousel = ({ children, slidesToShow = 1, ...props }) => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow,
-    slidesToScroll: 1,
-    arrows: false, // Desativa as setas do slick
+    slidesToShow : 3,
+    arrows: false, 
     responsive: [
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 1 }
-      },
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: Math.max(1, slidesToShow - 1) }
-      }
+      { breakpoint: 1280, settings: { slidesToShow: 3 } },
+      { breakpoint: 1124, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 1 } }
     ],
     beforeChange: (_, next) => setCurrent(next),
     ...props
@@ -89,16 +98,18 @@ const Carousel = ({ children, slidesToShow = 1, ...props }) => {
     <div style={{ overflow: 'visible', position: 'relative' }}>
       <Arrow
         direction="left"
-        onClick={() => sliderRef.current?.slickGoTo(Math.max(0, current - 3))}
+        onClick={() => sliderRef.current?.slickGoTo(Math.max(0, current - visibleSlides))}
         disabled={current === 0}
       />
       <Arrow
         direction="right"
-        onClick={() => sliderRef.current?.slickGoTo(Math.min(slideCount - slidesToShow, current + 3))}
-        disabled={current >= slideCount - slidesToShow}
+        onClick={() => sliderRef.current?.slickGoTo(Math.min(slideCount - visibleSlides, current + visibleSlides))}
+        disabled={current >= slideCount - visibleSlides}
       />
       <Slider ref={sliderRef} {...settings}>
-        {children}
+        {React.Children.map(children, child => (
+          <div className="px-4">{child}</div>
+        ))}
       </Slider>
     </div>
   )

@@ -6,12 +6,12 @@ import { motion } from 'framer-motion'
 
 const socialLinks = [
   {
-    href: "https://instagram.com/",
+    href: "https://www.instagram.com/vatesvesperion/",
     label: "Instagram",
     icon: <FaInstagram size={20} />,
   },
   {
-    href: "https://wa.me/",
+    href: "https://wa.me/5521969079474",
     label: "WhatsApp",
     icon: <FaWhatsapp size={20} />,
   },

@@ -6,6 +6,7 @@
   html, body {
     @apply scroll-smooth;
     @apply overflow-x-hidden;
+    @apply h-full;
   }
   
 }

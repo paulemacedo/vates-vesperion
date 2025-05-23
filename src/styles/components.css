@@ -1,4 +1,6 @@
 @layer components {
+
+  /* Button Styles */
   .btn {
     @apply inline-block rounded-full font-montserrat font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer;
   }
@@ -25,5 +27,17 @@
 
   .btn-lg {
     @apply px-8 py-4 text-base;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply border p-4 border-gold rounded-lg m-2 text-center transition-shadow max-w-xs mx-auto bg-midnight;
+    min-height: 192px;
+  }
+  .unavailable-card {
+    @apply bg-gray-800 opacity-60 pointer-events-none relative grayscale-80;
+  }
+  .card-badge {
+    @apply absolute top-4 left-4 bg-red-600/50 text-white text-xs px-3 py-1 rounded-full z-10 shadow-lg uppercase font-bold;
   }
 }

@@ -1,4 +1,11 @@
 @layer utilities {
+  .font-montserrat { font-family: var(--font-montserrat); }
+  .font-cinzel { font-family: var(--font-cinzel); }
+  .font-vollkorn { font-family: var(--font-vollkorn); }
+  .font-playfair { font-family: var(--font-playfair); }
+  .font-cormorant { font-family: var(--font-cormorant); }
+  .font-lato { font-family: var(--font-lato); }
+  
   .text-gradient-gold {
     background: linear-gradient(135deg, #d6b95b 0%, #a08c3a 100%);
     -webkit-background-clip: text;

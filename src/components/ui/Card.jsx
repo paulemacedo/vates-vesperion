@@ -14,11 +14,18 @@ const Card = ({
   const badge = badgeText !== undefined ? badgeText : 'indisponivel'
   return (
     <motion.div
-      className={`border p-4 border-gold rounded-lg m-2 text-center transition-shadow ${className} ${indisponivel ? 'bg-gray-800 grayscale-75 opacity-60  relative pointer-events-none' : 'bg-midnight'} max-w-xs mx-auto`}
-      style={{ minHeight: '192px' }}
+      className={[
+        'card',
+        indisponivel && 'unavailable-card',
+        className,
+      ].filter(Boolean).join(' ')}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={indisponivel ? {} : { scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
+      whileHover={
+        indisponivel
+          ? {}
+          : { scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }
+      }
       transition={{
         duration: 0.7,
         delay: 0.1,
@@ -28,7 +35,7 @@ const Card = ({
       viewport={{ once: true }}
     >
       {indisponivel && (
-        <span className="absolute top-4 left-1/5 -translate-x-1/2 bg-red-600/60  border-white text-white text-xs px-3 py-1 rounded-full z-10 shadow-lg uppercase font-bold ">
+        <span className="card-badge">
           {badge}
         </span>
       )}

@@ -1,11 +1,11 @@
 @layer base {
   span {
-    color: #b8a44d;
-    font-weight: bold;
+    @apply text-gold font-bold;
   }
 
-  html {
-    scroll-behavior: smooth;
+  html, body {
+    @apply scroll-smooth;
+    @apply overflow-x-hidden;
   }
   
 }

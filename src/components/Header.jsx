@@ -16,9 +16,9 @@ const Header = () => {
   ]
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-midnight border-b border-gold/30">
+    <header className="fixed w-full top-0 z-50 bg-midnight border-b border-gold/30 overflow-x-hidden">
       <div className="max-w-6xl mx-auto px-5">
-        <nav className="flex items-center justify-between p-5">
+        <nav className="flex items-center justify-between p-5 w-full">
           <a href="#hero" className="font-cinzel text-xl text-gold font-bold">
             VV
           </a>

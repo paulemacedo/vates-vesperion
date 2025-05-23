@@ -8,6 +8,7 @@ import { GiCrystalBall, GiCardJoker, GiPentacle, GiDragonfly, GiMoonBats } from 
 import { IoIosArrowForward } from "react-icons/io";
 import { BiSolidRightArrow } from "react-icons/bi";
 import star from '../assets/images/stars.gif'
+import { FaInstagram, FaTiktok, FaWhatsapp, FaYoutube} from 'react-icons/fa';
 
 
 const Hero = () => {
@@ -33,6 +34,41 @@ const Hero = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+
+          {/* Coluna Direita: Foto */}
+          <motion.div
+        className="relative mb-6 sm:mb-8 md:mb-0 md:w-1/2 mt-5 flex justify-center items-center"
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+      >
+        {/* Mystical Ring Animation */}
+        <motion.div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold/30 
+            w-50 h-48 xs:w-56 xs:h-64 sm:w-60 sm:h-72 md:w-64 md:h-80 lg:w-93 lg:h-90 pointer-events-none"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/20 
+            w-45 h-44 xs:w-52 xs:h-60 sm:w-56 sm:h-68 md:w-60 md:h-76 lg:w-88 lg:h-88 pointer-events-none"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+        />
+        {/* Enhanced Image Container */}
+        <div className="relative p-1 sm:p-2 rounded-full bg-gradient-to-br from-gold/30 to-purple-500/30 backdrop-blur-sm">
+          <motion.img
+            src={tframe}
+            alt="Vates Vesperion"
+            className="w-40 h-40 xs:w-56 xs:h-56 sm:w-60 sm:h-60 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full shadow-2xl"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+          {/* Inner Glow */}
+          <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gold/10 to-transparent pointer-events-none" />
+        </div>
+      </motion.div>
+      
       {/* Coluna Esquerda: Texto */}
       <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left max-w-full sm:max-w-2xl mx-auto px-2 md:w-1/2">
         {/* Title */}
@@ -50,7 +86,7 @@ const Hero = () => {
   
         {/* Typewriter */}
         <motion.div
-          className="relative text-primary/70 mb-6 xs:mb-8 text-lg xs:text-xl sm:text-2xl flex items-center justify-center md:justify-start w-full min-w-[20ch]"
+          className="relative text-primary/70 mb-6 xs:mb-8 text-bsase xs:text-xl sm:text-2xl flex items-center justify-center md:justify-start w-full min-w-[20ch]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
@@ -90,77 +126,85 @@ const Hero = () => {
 
         {/* Description */}
         <motion.p
-          className="text-lg xs:text-xl sm:text-2xl text-primary/70 font-light mb-6 sm:mb-8"
+          className="text-lg xs:text-xl sm:text-2xl text-primary/70 font-light "
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
         >
           Aconselhamento e autoconhecimento através de oráculos.
         </motion.p>
+        {/* Espaço entre CTA e Social Media */}
+        <div className="h-6" />
         {/* Social Media Links */}
-    
-        {/* CTA Button */}
+              
+        {/* CTA button + Social Media Links */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.8 }}
-          className="relative"
+          className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 mb-6 sm:mb-8"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
         >
+          {/* CTA Button */}
           <motion.div
-            className="absolute inset-0 rounded-full blur-xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.5, 0.8, 0.5]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <Button
-            variant="primary"
-            size="lg"
-            className="relative z-10 px-6 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-gradient-to-r from-gold to-yellow-600 hover:from-yellow-600 hover:to-gold text-black rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-gold/50"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8 }}
+            className="relative"
           >
-            Agendar Consulta
-          </Button>
+            <motion.div
+              className="absolute inset-0 rounded-full blur-xl"
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 0.8, 0.5]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <a
+              href="https://wa.me/5521969079474"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-10"
+            >
+              <Button
+                variant="primary"
+                size="lg"
+                className="px-6 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-gradient-to-r from-gold to-yellow-600 hover:from-yellow-600 hover:to-gold text-black rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-gold/50"
+              >
+                Agendar Consulta
+              </Button>
+            </a>
+            
+          </motion.div>
+        
+          {/* Social Media Icons
+          <motion.div
+            className="flex gap-4 mt-4 sm:mt-0"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 2.0, duration: 0.8 }}
+          >
+            <a href="wa.me/5521969079474" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp className="text-gold text-2xl sm:text-3xl hover:text-yellow-300 transition-colors duration-300" />
+            </a>
+            <a href="https://www.instagram.com/vatesvesperion/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram className="text-gold text-2xl sm:text-3xl hover:text-yellow-300 transition-colors duration-300" />
+            </a>
+            <a href="https://www.tiktok.com/@vatesvesperion" target="_blank" rel="noopener noreferrer">
+              <FaTiktok className="text-gold text-2xl sm:text-3xl hover:text-yellow-300 transition-colors duration-300" />
+            </a>
+            <a href="https://www.youtube.com/@vatesvesperion" target="_blank" rel="noopener noreferrer">
+              <FaYoutube className="text-gold text-2xl sm:text-3xl hover:text-yellow-300 transition-colors duration-300" />
+            </a>
+          </motion.div> */}
         </motion.div>
+        
       </div>
   
-      {/* Coluna Direita: Foto */}
-      <motion.div
-        className="relative mb-6 sm:mb-8 md:mb-0 md:w-1/2 mt-5 flex justify-center items-center"
-        initial={{ scale: 0.9, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-      >
-        {/* Mystical Ring Animation */}
-        <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold/30 
-            w-50 h-48 xs:w-56 xs:h-64 sm:w-60 sm:h-72 md:w-64 md:h-80 lg:w-93 lg:h-90 pointer-events-none"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/20 
-            w-45 h-44 xs:w-52 xs:h-60 sm:w-56 sm:h-68 md:w-60 md:h-76 lg:w-88 lg:h-88 pointer-events-none"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-        />
-        {/* Enhanced Image Container */}
-        <div className="relative p-1 sm:p-2 rounded-full bg-gradient-to-br from-gold/30 to-purple-500/30 backdrop-blur-sm">
-          <motion.img
-            src={tframe}
-            alt="Vates Vesperion"
-            className="w-40 h-40 xs:w-56 xs:h-56 sm:w-60 sm:h-60 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full shadow-2xl"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          />
-          {/* Inner Glow */}
-          <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gold/10 to-transparent pointer-events-none" />
-        </div>
-      </motion.div>
+  
 
 
       {/* Scroll Indicator */}

@@ -1,0 +1,29 @@
+@layer components {
+  .btn {
+    @apply inline-block rounded-full font-montserrat font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer;
+  }
+
+  .btn-default {
+    @apply bg-transparent text-gold border border-gold hover:bg-gold-gradient hover:text-midnight hover:border-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-gold-gradient text-midnight border-none hover:opacity-90 hover:shadow-lg hover:shadow-gold/50;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-gold border border-gold hover:bg-gold-gradient hover:text-midnight hover:border-transparent;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+
+  .btn-md {
+    @apply px-6 py-3 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+}

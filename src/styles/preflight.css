@@ -1,0 +1,11 @@
+@layer base {
+  span {
+    color: #b8a44d;
+    font-weight: bold;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+}

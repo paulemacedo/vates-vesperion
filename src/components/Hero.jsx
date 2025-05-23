@@ -1,0 +1,199 @@
+import { motion, AnimatePresence } from 'framer-motion'
+import Button from './ui/Button'
+import tframe from '../assets/images/TransparentFrame.png'
+import { TypeAnimation } from 'react-type-animation';
+import { useEffect, useState } from 'react'
+
+
+const Hero = () => {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0)
+  const texts = [
+    'Consultas de Tarot',
+    'Consultas de Baralho Cigano',
+    'Magias e Rituais'
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % texts.length)
+    }, 2500)
+    return () => clearInterval(interval)
+  }, [texts.length])
+
+  return (
+    <motion.section
+      id="hero"
+      className="relative flex flex-col md:flex-row items-center justify-center min-h-screen overflow-hidden px-2 sm:px-10 max-w-[1100px] mx-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      {/* Coluna Esquerda: Texto */}
+      <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left max-w-full sm:max-w-2xl mx-auto px-2 md:w-1/2">
+        {/* Title */}
+        <motion.h1
+          className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-300 to-gold mb-2 sm:mb-4"
+          initial={{ y: -50, opacity: 0, scale: 0.8 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
+          style={{
+            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
+          }}
+        >
+          VATES VESPERION
+        </motion.h1>
+  
+        {/* Typewriter */}
+        <motion.div
+          className="relative text-primary mb-8 text-2xl flex items-center justify-center md:justify-start"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+        >
+          <TypeAnimation
+            key={currentTextIndex}
+            sequence={[
+              texts[currentTextIndex],
+              5000,
+              '',
+              300
+            ]}
+            wrapper="span"
+            speed={50}
+            style={{
+              color: 'var(--primary)',
+              fontFamily: 'var(--font-vollkorn)',
+              fontSize: 'inherit',
+              display: 'inline-block'
+            }}
+            repeat={Infinity}
+            cursor={false}
+          />
+          {/* Decorative Elements */}
+          <motion.div
+            className="hidden xs:block absolute -left-4 sm:-left-8 top-1/2 transform -translate-y-1/2 w-3 sm:w-6 h-px bg-gradient-to-r from-gold to-transparent"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
+          />
+          <motion.div
+            className="hidden xs:block absolute -right-4 sm:-right-8 top-1/2 transform -translate-y-1/2 w-3 sm:w-6 h-px bg-gradient-to-l from-gold to-transparent"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
+          />
+        </motion.div>
+
+        {/* Description */}
+        <motion.p
+          className="text-lg xs:text-xl sm:text-2xl text-gold/70 font-light mb-6 sm:mb-8"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+        >
+          Aconselhamento e autoconhecimento através de oráculos.
+        </motion.p>
+        {/* Social Media Links */}
+    
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 0.8 }}
+          className="relative"
+        >
+          <motion.div
+            className="absolute inset-0 rounded-full blur-xl"
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.5, 0.8, 0.5]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <Button
+            variant="primary"
+            size="lg"
+            className="relative z-10 px-6 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-gradient-to-r from-gold to-yellow-600 hover:from-yellow-600 hover:to-gold text-black rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-gold/50"
+          >
+            Agendar Consulta
+          </Button>
+        </motion.div>
+      </div>
+  
+      {/* Coluna Direita: Foto */}
+      <motion.div
+        className="relative mb-6 sm:mb-8 md:mb-0 md:w-1/2 mt-5 flex justify-center items-center"
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+      >
+        {/* Mystical Ring Animation */}
+        <motion.div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold/30 w-[80%] h-[115%] pointer-events-none"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/20 w-[75%] h-[105%] pointer-events-none"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+        />
+        {/* Enhanced Image Container */}
+        <div className="relative p-1 sm:p-2 rounded-full bg-gradient-to-br from-gold/20 to-purple-500/20 backdrop-blur-sm">
+          <motion.img
+            src={tframe}
+            alt="Vates Vesperion"
+            className="w-40 h-40 xs:w-56 xs:h-56 sm:w-60 sm:h-60 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full shadow-2xl"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+          {/* Inner Glow */}
+          <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gold/10 to-transparent pointer-events-none" />
+        </div>
+      </motion.div>
+  
+      {/* Subtitle */}
+      <motion.h2
+        className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-2xl text-gold/70 font-light tracking-wide absolute left-1/2 -translate-x-1/2 bottom-20 sm:bottom-28 text-center"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.9, duration: 0.8 }}
+        style={{ width: 'max-content' }}
+      >
+        A Noite revela o que o Sol não ousa dizer
+        <motion.div
+          className="absolute -bottom-1 left-0 w-full h-px"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+        />
+      </motion.h2>
+  
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.5, duration: 0.8 }}
+      >
+        <motion.div
+          className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-gold/50 rounded-full flex justify-center"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <motion.div
+            className="w-1 h-2 sm:h-3 bg-gold/70 rounded-full mt-2"
+            animate={{ opacity: [1, 0.3, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        </motion.div>
+      </motion.div>
+    </motion.section>
+  )
+}
+
+export default Hero

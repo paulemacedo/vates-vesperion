@@ -1,0 +1,24 @@
+@layer components {
+  p, body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+  }
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+  }
+  h2 {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: 600;
+  }
+  h3,
+  h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+  h5,
+  h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+  }
+}

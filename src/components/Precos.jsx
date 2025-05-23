@@ -28,7 +28,7 @@ const Precos = () => {
   ]
 
   return (
-    <section id="precos" className="bg-midnight py-20 px-4">
+    <section id="precos" className="py-20 px-4">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-vollkorn text-gold mb-12 uppercase tracking-wide">
           Tabela de Preços

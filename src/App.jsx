@@ -11,18 +11,28 @@ import Particles from './components/ui/Particles'
 import './index.css'
 import { useState } from 'react'
 
+const sections = [
+  { Component: Hero },
+  { Component: Leituras },
+  { Component: Precos },
+  { Component: Servicos },
+  // { Component: Sobre },
+  { Component: FAQ },
+  { Component: Depoimentos },
+];
+
+const bgClasses = ['bg-midnight', 'bg-purple-dark'];
+
 function App() {
   return (
     <div className="bg-midnight text-text-primary">
       <Particles />
       <Header />
-      <Hero />
-      <Leituras />
-      <Precos />
-      <Servicos />
-      {/* <Sobre /> */}
-      <FAQ />
-      <Depoimentos />
+      {sections.map(({ Component }, idx) => (
+        <div key={idx} className={bgClasses[idx % bgClasses.length]}>
+          <Component />
+        </div>
+      ))}
       <Footer />    
     </div>
   )

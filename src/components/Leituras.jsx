@@ -14,7 +14,7 @@ const Leituras = () => {
   return (
     <section
       id="leituras"
-      className="bg-purple-dark py-12 px-4 sm:py-16 md:py-20"
+      className="py-12 px-4 sm:py-16 md:py-20"
     >
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-xl sm:text-2xl md:text-3xl text-gold mb-4 sm:mb-6 uppercase tracking-wide">

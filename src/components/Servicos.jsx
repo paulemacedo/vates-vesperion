@@ -26,7 +26,7 @@ const Servicos = () => {
     },
     {
       title: 'Feitiços e Rituais',
-      icon: <GiEclipse size={40} className="text-gold mx-auto m-4" />,
+      icon: <GiEclipse size={40} className="text-gold bg-gold mx-auto m-4" />,
       description: 'Feitiços e rituais para proteção, amor, prosperidade e outros temas. Trabalhos energéticos para potencializar sua energia.',
       indisponivel: true,
     },

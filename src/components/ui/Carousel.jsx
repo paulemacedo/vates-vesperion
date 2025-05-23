@@ -8,6 +8,14 @@ const customArrowStyle = `
   .slick-arrow {
     display: none !important;
   }
+  .slick-dots li button:before {
+    color: gold !important;
+    opacity: 0,3 !important;
+  }
+  .slick-dots li.slick-active button:before {
+    color: gold !important; /* gold-dark */
+    opacity: 1 !important;
+  }
 `
 const Arrow = ({ direction, onClick, disabled }) => {
   if (disabled) return null
@@ -49,7 +57,7 @@ const Arrow = ({ direction, onClick, disabled }) => {
   )
 }
 
-const Carousel = ({ children, slidesToShow = 1, ...props }) => {
+const Carousel = ({ children, slidesToShow = 3, ...props }) => {
   const sliderRef = useRef(null)
   const [current, setCurrent] = useState(0)
   const [visibleSlides, setVisibleSlides] = useState(slidesToShow)
@@ -83,11 +91,10 @@ const Carousel = ({ children, slidesToShow = 1, ...props }) => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow : 3,
     arrows: false, 
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1124, settings: { slidesToShow: 2 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
       { breakpoint: 768, settings: { slidesToShow: 1 } }
     ],
     beforeChange: (_, next) => setCurrent(next),
@@ -104,7 +111,7 @@ const Carousel = ({ children, slidesToShow = 1, ...props }) => {
       <Arrow
         direction="right"
         onClick={() => sliderRef.current?.slickGoTo(Math.min(slideCount - visibleSlides, current + visibleSlides))}
-        disabled={current >= slideCount - visibleSlides}
+        disabled={current >= slideCount - visibleSlides || slideCount <= visibleSlides}
       />
       <Slider ref={sliderRef} {...settings}>
         {React.Children.map(children, child => (

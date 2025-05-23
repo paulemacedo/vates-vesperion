@@ -1,12 +1,25 @@
 import React from 'react'
 import Card from './ui/Card'
 import Carousel from './ui/Carousel'
-import { GiHeraldicSun, GiEclipse, GiEclipseFlare, GiCrystalBall, GiMoon, GiMoonBats, GiGlowingHands, GiHammerSickle, GiCardJoker, GiCardPlay} from 'react-icons/gi'
-import { FaStarOfDavid, FaMoon } from 'react-icons/fa'
+import { 
+  GiHeraldicSun, 
+  GiEclipse, 
+  GiEclipseFlare,
+  GiCrystalBall, 
+  GiMoon, 
+  GiMoonBats, 
+  GiGlowingHands, 
+  GiHammerSickle, 
+  GiCardJoker, 
+  GiCardPlay
+} from 'react-icons/gi'
 import { BsMoonStarsFill } from "react-icons/bs";
 import { LuMoonStar } from "react-icons/lu";
+import { FaOm } from 'react-icons/fa';
+import { b } from 'framer-motion/client';
 
 const Servicos = () => {
+
   const servicos = [
     {
       title: 'Tarot',
@@ -23,19 +36,22 @@ const Servicos = () => {
       icon: <GiEclipseFlare size={40} className="text-gold mx-auto m-4" />,
       description: 'Leitura do Sibilla, um baralho com cartas que falam sobre amor, dinheiro e saúde. Uma leitura mais direta e prática.',
       indisponivel: true,
+      badgeText: 'Em breve',
     },
     {
       title: 'Feitiços e Rituais',
-      icon: <GiEclipse size={40} className="text-gold bg-gold mx-auto m-4" />,
+      icon: <GiEclipse size={40} className="text-gold mx-auto m-4" />,
       description: 'Feitiços e rituais para proteção, amor, prosperidade e outros temas. Trabalhos energéticos para potencializar sua energia.',
       indisponivel: true,
+      badgeText: 'Em breve',
     },
     {
-      title: 'Astrologia vedica',
-      icon: <BsMoonStarsFill size={40} className="text-gold mx-auto m-4" />,
+      title: 'Astrologia védica',
+      icon: <FaOm size={40} className="text-gold mx-auto m-4" />,
       description: 'Análise astrológica com base na astrologia védica. Uma leitura profunda e detalhada sobre sua vida e personalidade.',
       indisponivel: true,
-    },
+      badgeText: 'Em breve',
+    }
   ]
 
   return (
@@ -54,6 +70,7 @@ const Servicos = () => {
               description={servico.description}
               variant='servico'
               indisponivel={servico.indisponivel}
+              badgeText={servico.badgeText}
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 40 }}
               whileHover={servico.indisponivel ? {} : { scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}

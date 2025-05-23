@@ -1,8 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from './ui/Button'
 import tframe from '../assets/images/TransparentFrame.png'
+import frame from '../assets/images/Frame.png'
 import { TypeAnimation } from 'react-type-animation';
 import { useEffect, useState } from 'react'
+import { GiCrystalBall, GiCardJoker, GiPentacle, GiDragonfly, GiMoonBats } from 'react-icons/gi'
+import { IoIosArrowForward } from "react-icons/io";
+import { BiSolidRightArrow } from "react-icons/bi";
+import star from '../assets/images/stars.gif'
 
 
 const Hero = () => {
@@ -45,18 +50,16 @@ const Hero = () => {
   
         {/* Typewriter */}
         <motion.div
-          className="relative text-primary mb-8 text-2xl flex items-center justify-center md:justify-start"
+          className="relative text-primary/70 mb-6 xs:mb-8 text-lg xs:text-xl sm:text-2xl flex items-center justify-center md:justify-start w-full min-w-[20ch]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
         >
+            {/* Texto invisível para reservar espaço */}
+          <GiMoonBats className="mr-2 text-primary/70 text-2xl sm:text-4xl" />
           <TypeAnimation
-            key={currentTextIndex}
             sequence={[
-              texts[currentTextIndex],
-              5000,
-              '',
-              300
+              ...texts.map(t => [t, 2000, '', 300]).flat()
             ]}
             wrapper="span"
             speed={50}
@@ -64,7 +67,8 @@ const Hero = () => {
               color: 'var(--primary)',
               fontFamily: 'var(--font-vollkorn)',
               fontSize: 'inherit',
-              display: 'inline-block'
+              display: 'inline-block',
+              minWidth: '20ch',
             }}
             repeat={Infinity}
             cursor={false}
@@ -86,7 +90,7 @@ const Hero = () => {
 
         {/* Description */}
         <motion.p
-          className="text-lg xs:text-xl sm:text-2xl text-gold/70 font-light mb-6 sm:mb-8"
+          className="text-lg xs:text-xl sm:text-2xl text-primary/70 font-light mb-6 sm:mb-8"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
@@ -133,17 +137,19 @@ const Hero = () => {
       >
         {/* Mystical Ring Animation */}
         <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold/30 w-[80%] h-[115%] pointer-events-none"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold/30 
+            w-50 h-48 xs:w-56 xs:h-64 sm:w-60 sm:h-72 md:w-64 md:h-80 lg:w-93 lg:h-90 pointer-events-none"
           animate={{ rotate: 360 }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/20 w-[75%] h-[105%] pointer-events-none"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/20 
+            w-45 h-44 xs:w-52 xs:h-60 sm:w-56 sm:h-68 md:w-60 md:h-76 lg:w-88 lg:h-88 pointer-events-none"
           animate={{ rotate: -360 }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         />
         {/* Enhanced Image Container */}
-        <div className="relative p-1 sm:p-2 rounded-full bg-gradient-to-br from-gold/20 to-purple-500/20 backdrop-blur-sm">
+        <div className="relative p-1 sm:p-2 rounded-full bg-gradient-to-br from-gold/30 to-purple-500/30 backdrop-blur-sm">
           <motion.img
             src={tframe}
             alt="Vates Vesperion"
@@ -155,40 +161,33 @@ const Hero = () => {
           <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gold/10 to-transparent pointer-events-none" />
         </div>
       </motion.div>
-  
-      {/* Subtitle */}
-      <motion.h2
-        className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-2xl text-gold/70 font-light tracking-wide absolute left-1/2 -translate-x-1/2 bottom-20 sm:bottom-28 text-center"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.8 }}
-        style={{ width: 'max-content' }}
-      >
-        A Noite revela o que o Sol não ousa dizer
-        <motion.div
-          className="absolute -bottom-1 left-0 w-full h-px"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-        />
-      </motion.h2>
-  
+
+
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute left-1/2 transform -translate-x-1/2 bottom-4 sm:bottom-8 flex flex-col items-center w-50 sm:w-100 px-2"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.5, duration: 0.8 }}
       >
+        {/* Subtitle for mobile: show above scroll indicator */}
+        <motion.h3
+          className="block sm:text-2xl font-vollkorn text-bA xs:text-lg text-gold/70 font-light tracking-wide mb-3 text-center pointer-events-none w-full"
+          style={{ maxWidth: '320px', width: '100%' }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          A Noite revela o que o Sol não ousa dizer
+        </motion.h3>
         <motion.div
           className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-gold/50 rounded-full flex justify-center"
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.div
             className="w-1 h-2 sm:h-3 bg-gold/70 rounded-full mt-2"
             animate={{ opacity: [1, 0.3, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
         </motion.div>
       </motion.div>

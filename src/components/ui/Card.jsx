@@ -9,11 +9,12 @@ const Card = ({
   variant = 'preco',
   className = '',
   indisponivel = false,
-  badgeText = 'Em breve',
+  badgeText,
 }) => {
+  const badge = badgeText !== undefined ? badgeText : 'indisponivel'
   return (
     <motion.div
-      className={`border border-gold rounded-lg m-2 text-center transition-shadow ${className} ${indisponivel ? 'bg-gray-700 opacity-60 grayscale relative pointer-events-none' : 'bg-midnight'} max-w-xs mx-auto`}
+      className={`border p-4 border-gold rounded-lg m-2 text-center transition-shadow ${className} ${indisponivel ? 'bg-gray-700 opacity-60 grayscale relative pointer-events-none' : 'bg-midnight'} max-w-xs mx-auto`}
       style={{ minHeight: '192px' }}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +29,7 @@ const Card = ({
     >
       {indisponivel && (
         <span className="absolute top-4 left-1/2 -translate-x-1/2 bg-red-700 text-white text-xs px-3 py-1 rounded-full z-10 shadow-lg uppercase font-bold ">
-          {badgeText}
+          {badge}
         </span>
       )}
       {variant === 'servico' && icon && (

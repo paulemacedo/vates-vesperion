@@ -7,21 +7,21 @@ const Precos = () => {
     {
       title: '1 PERGUNTA',
       price: 'R$ 5,00',
-      originalPrice: 'R$ 10,00',
+      originalPrice: 'R$ 7,00',
       description: 'Resposta direta para uma dúvida específica',
       indisponivel: false, // ou true para marcar como indisponível
     },
     {
       title: '5 PERGUNTAS',
-      price: 'R$ 25,00',
-      originalPrice: 'R$ 45,00',
+      price: 'R$ 20,00',
+      originalPrice: 'R$ 35,00',
       description: 'Consulta mais completa para múltiplas questões',
       indisponivel: false,
     },
     {
       title: 'MANDALA DA VIDA',
       price: 'R$ 50,00',
-      originalPrice: 'R$ 75,00',
+      originalPrice: 'R$ 70,00',
       description: 'Leitura completa abrangendo todos os aspectos da vida',
       indisponivel: false,
     },
@@ -48,6 +48,9 @@ const Precos = () => {
             />
           ))}
         </Carousel>
+        <p className="text-gray-500 mt-8">
+          * Promoção válida por tempo limitado. Consulte as condições.
+        </p>
       </div>
     </section>
   )

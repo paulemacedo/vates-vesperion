@@ -31,8 +31,7 @@
 
   /* Card Styles */
   .card {
-    @apply border p-4 border-gold rounded-lg m-2 text-center transition-shadow max-w-xs mx-auto bg-midnight;
-    min-height: 192px;
+    @apply border p-4 border-gold rounded-lg m-2 text-center transition-shadow max-w-xs mx-auto bg-midnight min-h-48;
   }
   .unavailable-card {
     @apply bg-gray-800 opacity-60 pointer-events-none relative grayscale-80;

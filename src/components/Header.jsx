@@ -24,7 +24,7 @@ const Header = () => {
           </a>
           
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-8">
+          <ul className="flex space-x-8 max-md:hidden">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a 

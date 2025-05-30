@@ -15,21 +15,6 @@ const socialLinks = [
     label: "WhatsApp",
     icon: <FaWhatsapp size={20} />,
   },
-  {
-    href: "https://tiktok.com/",
-    label: "TikTok",
-    icon: <FaTiktok size={20} />,
-  },
-  {
-    href: "https://youtube.com/",
-    label: "YouTube",
-    icon: <FaYoutube size={20} />,
-  },
-  {
-    href: "mailto:contato@email.com",
-    label: "Email",
-    icon: <FaEnvelope size={20} />,
-  },
 ];
 
 const Footer = () => (

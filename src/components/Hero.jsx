@@ -164,7 +164,7 @@ const Hero = () => {
               }}
             />
             <a
-              href="https://wa.me/5521969079474?text=Olá%2C+gostaria+de+agendar+uma+consulta!"
+              href="https://wa.me/5521972592555?text=Olá%2C+gostaria+de+agendar+uma+consulta!"
               target="_blank"
               rel="noopener noreferrer"
               className="relative z-10"

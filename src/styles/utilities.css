@@ -24,4 +24,19 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Animação de pulso para a borda */
+  @keyframes border-pulse {
+    0%, 100% { 
+      border-color: rgba(184, 164, 77, 0.6); 
+    }
+    50% { 
+      border-color: rgba(184, 164, 77, 1); 
+      box-shadow: 0 0 20px rgba(184, 164, 77, 0.4); 
+    }
+  }
+  
+  .border-pulse-animation {
+    animation: border-pulse 2s ease-in-out infinite;
+  }
 }

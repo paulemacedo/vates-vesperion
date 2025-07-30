@@ -19,8 +19,6 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import { LuMoonStar } from "react-icons/lu";
 import { FaOm, FaHeart, FaClock  } from 'react-icons/fa';
 
-const Servicos = () => {
-
   const tarotServicos = [
     {
       icon: <GiCardPlay size={35} className="text-gold mx-auto m-4" />,
@@ -123,15 +121,7 @@ const Servicos = () => {
   ];
 
   // Configuração das seções
-  const secoes = [
-    {
-      id: 'tarot',
-      titulo: 'Tarot',
-      icone: <GiCardJoker className="text-gold" />,
-      descricao: 'O Tarot é uma ferramenta poderosa de autoconhecimento e orientação espiritual. Nossas leituras são feitas com cartas tradicionais, revelando insights sobre amor, carreira, saúde e espiritualidade.',
-      servicos: tarotServicos,
-      marginBottom: 'mb-4'
-    },
+  export const secoes = [
     {
       id: 'baralho-cigano',
       titulo: 'Baralho Cigano',
@@ -139,6 +129,14 @@ const Servicos = () => {
       descricao: 'O Baralho Cigano é uma forma de oráculo que traz respostas diretas e práticas sobre questões do dia a dia. Nossas leituras são feitas com cartas ciganas, revelando insights sobre amor, dinheiro e saúde.',
       servicos: baralhoCiganoServicos,
       marginBottom: 'mb-8'
+    },
+    {
+      id: 'tarot',
+      titulo: 'Tarot',
+      icone: <GiCardJoker className="text-gold" />,
+      descricao: 'O Tarot é uma ferramenta poderosa de autoconhecimento e orientação espiritual. Nossas leituras são feitas com cartas tradicionais, revelando insights sobre amor, carreira, saúde e espiritualidade.',
+      servicos: tarotServicos,
+      marginBottom: 'mb-4'
     },
     {
       id: 'em-breve',
@@ -191,6 +189,10 @@ const Servicos = () => {
       </Carousel>
     </div>
   );
+
+const Servicos = () => {
+
+
 
   return (
     <section id="servicos" className="py-20 px-4">

@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { HiMenu, HiX, HiChevronDown} from 'react-icons/hi'
 import { motion, AnimatePresence } from 'framer-motion'
+import { secoes } from './Servicos'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -14,11 +15,10 @@ const Header = () => {
       href: '#servicos', 
       label: 'Serviços', 
       hasSubmenu: true,
-      submenu: [
-        { href: '#tarot', label: 'Tarot' },
-        { href: '#baralho-cigano', label: 'Baralho Cigano' },
-        { href: '#em-breve', label: 'Em Breve' },
-      ]
+      submenu: secoes.map(secao => ({
+        href: `#${secao.id}`,
+        label: secao.titulo,
+      })),
     },
     { href: '#faq', label: 'FAQ' },
     { href: '#depoimentos', label: 'Depoimentos' },

@@ -143,7 +143,7 @@ const Servicos = () => {
 
 
         {/* Tarot */}
-        <div className="mb-24">
+        <div id="tarot" className="mb-24">
           <div className="mb-2">            
             <h3 className="text-2xl md:text-3xl font-vollkorn text-primary/90 mb-4 uppercase tracking-wide flex items-center justify-center gap-4">
               <GiCardJoker  className="text-gold" />
@@ -181,8 +181,8 @@ const Servicos = () => {
         </div>
 
         {/* Baralho Cigano */}
-        <div className="mb-24">
-          <div className="mb-12">
+        <div id="baralho-cigano" className="mb-24">
+          <div className="mb-2">
             <h3 className="text-2xl md:text-3xl font-vollkorn text-primary/90 mb-8 uppercase tracking-wide flex items-center justify-center gap-4">
               <GiCardAceDiamonds  className="text-gold" />
               Baralho Cigano
@@ -219,8 +219,8 @@ const Servicos = () => {
         </div>
 
         {/* Em Breve */}
-        <div className="mb-24">
-          <div className="mb-12">
+        <div id="em-breve" className="mb-24">
+          <div className="mb-2">
             <h3 className="text-2xl md:text-3xl font-vollkorn text-primary/90 mb-4 uppercase tracking-wide flex items-center justify-center gap-4">
               <FaClock className="text-gold" />
               Em Breve

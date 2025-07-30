@@ -36,7 +36,7 @@ const FAQ = () => {
   return (
     <section id="faq" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-vollkorn text-gold mb-12 text-center uppercase tracking-wide">
+        <h2 className="text-3xl md:text-4xl font-vollkorn text-gold mb-12 text-center uppercase tracking-wide">
           Saiba mais sobre as leituras
         </h2>
 

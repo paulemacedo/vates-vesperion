@@ -7,6 +7,12 @@
     @apply scroll-smooth;
     @apply overflow-x-hidden;
     @apply h-full;
-  }
+    @apply scroll-mt-24;
   
+  }
+
+  [id] {
+    @apply scroll-mt-16;
+  }
+
 }

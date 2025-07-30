@@ -24,8 +24,6 @@ import { FaOm, FaHeart, FaClock  } from 'react-icons/fa';
       icon: <GiCardPlay size={35} className="text-gold mx-auto m-4" />,
       title: '1 pergunta',
       price: 'R$ 8,00',
-      originalPrice: 'R$ 10,00',
-      hasDiscount: true,
       description: 'Leitura de uma pergunta específica com foco em respostas diretas e objetivas.',
     },
     {
@@ -67,6 +65,8 @@ import { FaOm, FaHeart, FaClock  } from 'react-icons/fa';
       icon: <GiCardJoker size={35} className="text-gold mx-auto m-4" />,
       title: '5 perguntas',
       price: 'R$ 25,00',
+      originalPrice: 'R$ 35,00',
+      hasDiscount: true,
       description: 'Múltiplas respostas para entender melhor o momento atual.',
     },
     {
@@ -168,6 +168,8 @@ import { FaOm, FaHeart, FaClock  } from 'react-icons/fa';
               key={index}
               title={servico.title}
               price={servico.price}
+              originalPrice={servico.originalPrice}
+              hasDiscount={servico.hasDiscount}
               description={servico.description}
               icon={servico.icon}
               indisponivel={servico.indisponivel}

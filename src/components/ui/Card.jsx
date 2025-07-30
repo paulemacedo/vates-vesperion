@@ -27,7 +27,7 @@ const Card = ({
         indisponivel
           ? {}
           : { 
-              scale: 1.02, 
+              scale: 1.0, 
               boxShadow: '0 20px 40px -12px rgba(255, 215, 0, 0.3)',
               borderColor: 'rgba(255, 215, 0, 0.4)'
             }

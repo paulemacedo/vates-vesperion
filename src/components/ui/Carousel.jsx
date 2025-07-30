@@ -124,7 +124,7 @@ const Carousel = ({ children, slidesToShow = 3, ...props }) => {
       <div style={{ position: 'relative' }}>
         <Arrow
           direction="left"
-          onClick={() => sliderRef.current?.slicSkGoTo(Math.max(0, current - visibleSlides))}
+          onClick={() => sliderRef.current?.slickGoTo(Math.max(0, current - visibleSlides))}
           disabled={current === 0}
         />
         <Arrow

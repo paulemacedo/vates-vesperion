@@ -18,7 +18,6 @@ import {
 import { BsMoonStarsFill } from "react-icons/bs";
 import { LuMoonStar } from "react-icons/lu";
 import { FaOm, FaHeart, FaClock  } from 'react-icons/fa';
-import { b, desc } from 'framer-motion/client';
 
 const Servicos = () => {
 
@@ -64,7 +63,6 @@ const Servicos = () => {
       icon: <GiCardPlay size={35} className="text-gold mx-auto m-4" />,
       title: '1 pergunta',
       price: 'R$ 7,00',
-
       description: 'Leitura de uma pergunta específica com foco em respostas diretas e objetivas.',
     },
     {
@@ -124,6 +122,75 @@ const Servicos = () => {
     },
   ];
 
+  // Configuração das seções
+  const secoes = [
+    {
+      id: 'tarot',
+      titulo: 'Tarot',
+      icone: <GiCardJoker className="text-gold" />,
+      descricao: 'O Tarot é uma ferramenta poderosa de autoconhecimento e orientação espiritual. Nossas leituras são feitas com cartas tradicionais, revelando insights sobre amor, carreira, saúde e espiritualidade.',
+      servicos: tarotServicos,
+      marginBottom: 'mb-4'
+    },
+    {
+      id: 'baralho-cigano',
+      titulo: 'Baralho Cigano',
+      icone: <GiCardAceDiamonds className="text-gold" />,
+      descricao: 'O Baralho Cigano é uma forma de oráculo que traz respostas diretas e práticas sobre questões do dia a dia. Nossas leituras são feitas com cartas ciganas, revelando insights sobre amor, dinheiro e saúde.',
+      servicos: baralhoCiganoServicos,
+      marginBottom: 'mb-8'
+    },
+    {
+      id: 'em-breve',
+      titulo: 'Em Breve',
+      icone: <FaClock className="text-gold" />,
+      descricao: 'Estamos sempre expandindo nossos serviços místicos. Em breve, teremos novas práticas e oráculos disponíveis para você explorar. Fique atento!',
+      servicos: emBreveServicos,
+      marginBottom: 'mb-12'
+    }
+  ];
+
+  // Componente reutilizável para as seções
+  const SecaoServicos = ({ secao }) => (
+    <div id={secao.id} className="mb-24">
+      <div className="mb-2">
+        <h3 className={`text-2xl md:text-3xl font-vollkorn text-primary/90 ${secao.marginBottom} uppercase tracking-wide flex items-center justify-center gap-4`}>
+          {secao.icone}
+          {secao.titulo}
+          {secao.icone}
+        </h3>
+        <p className="text-primary/70 max-w-xl mx-auto">
+          {secao.descricao}
+        </p>
+      </div>
+      <Carousel>
+        {secao.servicos.map((servico, index) => (
+          <div className="h-110 flex items-center justify-center p-4" key={index}>
+            <Card
+              key={index}
+              title={servico.title}
+              price={servico.price}
+              description={servico.description}
+              icon={servico.icon}
+              indisponivel={servico.indisponivel}
+              badgeText={servico.badgeText}
+              variant='preco'
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
+              transition={{
+                duration: 0.7,
+                delay: 0.1,
+                scale: { duration: 0.3 },
+                boxShadow: { duration: 0.3 },
+              }}
+              viewport={{ once: true }}
+            />
+          </div>
+        ))}
+      </Carousel>
+    </div>
+  );
 
   return (
     <section id="servicos" className="py-20 px-4">
@@ -141,122 +208,10 @@ const Servicos = () => {
         </div>
       </div>
 
-
-        {/* Tarot */}
-        <div id="tarot" className="mb-24">
-          <div className="mb-2">            
-            <h3 className="text-2xl md:text-3xl font-vollkorn text-primary/90 mb-4 uppercase tracking-wide flex items-center justify-center gap-4">
-              <GiCardJoker  className="text-gold" />
-              Tarot
-              <GiCardJoker  className="text-gold" />         
-            </h3>
-            <p className="text-primary/70 max-w-xl mx-auto">
-              O Tarot é uma ferramenta poderosa de autoconhecimento e orientação espiritual. Nossas leituras são feitas com cartas tradicionais, revelando insights sobre amor, carreira, saúde e espiritualidade.
-            </p>
-          </div>
-          <Carousel>
-            {tarotServicos.map((servico, index) => (
-              <div className="h-110 flex items-center justify-center p-4" key={index}>
-                  <Card
-                    key={index}
-                    title={servico.title}
-                    price={servico.price}
-                    description={servico.description}
-                  icon={servico.icon}
-                  variant='preco'
-                  whileInView={{ opacity: 1, y: 0 }}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
-                  transition={{
-                    duration: 0.7,
-                    delay: 0.1,
-                    scale: { duration: 0.3 },
-                    boxShadow: { duration: 0.3 },
-                  }}
-                  viewport={{ once: true }}
-                />
-              </div>
-            ))}
-          </Carousel>
-        </div>
-
-        {/* Baralho Cigano */}
-        <div id="baralho-cigano" className="mb-24">
-          <div className="mb-2">
-            <h3 className="text-2xl md:text-3xl font-vollkorn text-primary/90 mb-8 uppercase tracking-wide flex items-center justify-center gap-4">
-              <GiCardAceDiamonds  className="text-gold" />
-              Baralho Cigano
-              <GiCardAceDiamonds  className="text-gold" />
-            </h3>
-            <p className="text-primary/70 max-w-xl mx-auto">
-              O Baralho Cigano é uma forma de oráculo que traz respostas diretas e práticas sobre questões do dia a dia. Nossas leituras são feitas com cartas ciganas, revelando insights sobre amor, dinheiro e saúde.
-            </p>
-          </div>
-          <Carousel>
-            {baralhoCiganoServicos.map((servico, index) => (
-            <div className="h-110 flex items-center justify-center p-4" key={index}>
-                <Card
-                  key={index}
-                  title={servico.title}
-                  price={servico.price}
-                  description={servico.description}
-                  icon={servico.icon}
-                  variant='preco'
-                  whileInView={{ opacity: 1, y: 0 }}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
-                  transition={{
-                    duration: 0.7,
-                    delay: 0.1,
-                    scale: { duration: 0.3 },
-                    boxShadow: { duration: 0.3 },
-                  }}
-                  viewport={{ once: true }}
-                />
-              </div>
-            ))}
-          </Carousel>
-        </div>
-
-        {/* Em Breve */}
-        <div id="em-breve" className="mb-24">
-          <div className="mb-2">
-            <h3 className="text-2xl md:text-3xl font-vollkorn text-primary/90 mb-4 uppercase tracking-wide flex items-center justify-center gap-4">
-              <FaClock className="text-gold" />
-              Em Breve
-              <FaClock className="text-gold" />
-            </h3>
-            <p className="text-primary/70 max-w-xl mx-auto mb-12">
-              Estamos sempre expandindo nossos serviços místicos. Em breve, teremos novas práticas e oráculos disponíveis para você explorar. Fique atento!
-            </p>
-          </div>
-          <Carousel>
-            {emBreveServicos.map((servico, index) => (
-              <div className="h-full flex items-center justify-center p-4" key={index}>
-              <Card
-                key={index}
-                title={servico.title}
-                price={servico.price}
-                description={servico.description}
-                icon={servico.icon}
-                indisponivel={servico.indisponivel}
-                badgeText={servico.badgeText}
-                variant='preco'
-                whileInView={{ opacity: 1, y: 0 }}
-                initial={{ opacity: 0, y: 40 }}
-                whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.1,
-                  scale: { duration: 0.3 },
-                  boxShadow: { duration: 0.3 },
-                }}
-                viewport={{ once: true }}
-              />
-              </div>
-            ))}
-          </Carousel>
-        </div>
+        {/* Renderização das seções */}
+        {secoes.map((secao, index) => (
+          <SecaoServicos key={secao.id} secao={secao} />
+        ))}
 
       </div>
     </section>

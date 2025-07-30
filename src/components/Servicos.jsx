@@ -130,48 +130,52 @@ const Servicos = () => {
       <div className="max-w-7xl mx-auto text-center">
 
         {/* Título da seção */}
-        <h2 className="text-3xl md:text-4xl font-vollkorn text-gold mb-12 uppercase tracking-wide">
-          Serviços Místicos
-        </h2>
-        <div className=" mx-auto max-w-xl mb-8">
-          <p className="text-primary/70 max-w-2xl mx-auto">
-            Descubra os mistérios do seu destino através de práticas ancestrais e orientação espiritual personalizada.
+        <div className="mb-24">
+          <h2 className="text-3xl md:text-4xl font-vollkorn text-gold mb-4 uppercase tracking-wide">
+            Serviços Místicos
+          </h2>
+          <div className=" mx-auto max-w-xl mb-8">
+            <p className="text-primary/70 max-w-2xl mx-auto">
+              Descubra nossos serviços místicos, que vão desde leituras de tarot e baralho cigano até práticas de autoconhecimento e espiritualidade. Cada serviço é projetado para oferecer insights profundos e orientações personalizadas.
           </p>
         </div>
+      </div>
 
 
         {/* Tarot */}
         <div className="mb-24">
-          <div className="mb-12">            
+          <div className="mb-2">            
             <h3 className="text-2xl md:text-3xl font-vollkorn text-primary/90 mb-4 uppercase tracking-wide flex items-center justify-center gap-4">
               <GiCardJoker  className="text-gold" />
               Tarot
               <GiCardJoker  className="text-gold" />         
             </h3>
-            <p className="text-primary/70 max-w-xl mx-auto mb-12">
+            <p className="text-primary/70 max-w-xl mx-auto">
               O Tarot é uma ferramenta poderosa de autoconhecimento e orientação espiritual. Nossas leituras são feitas com cartas tradicionais, revelando insights sobre amor, carreira, saúde e espiritualidade.
             </p>
           </div>
           <Carousel>
             {tarotServicos.map((servico, index) => (
-              <Card
-                key={index}
-                title={servico.title}
-                price={servico.price}
-                description={servico.description}
-                icon={servico.icon}
-                variant='preco'
-                whileInView={{ opacity: 1, y: 0 }}
-                initial={{ opacity: 0, y: 40 }}
-                whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.1,
-                  scale: { duration: 0.3 },
-                  boxShadow: { duration: 0.3 },
-                }}
-                viewport={{ once: true }}
-              />
+              <div className="h-110 flex items-center justify-center p-4" key={index}>
+                  <Card
+                    key={index}
+                    title={servico.title}
+                    price={servico.price}
+                    description={servico.description}
+                  icon={servico.icon}
+                  variant='preco'
+                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.1,
+                    scale: { duration: 0.3 },
+                    boxShadow: { duration: 0.3 },
+                  }}
+                  viewport={{ once: true }}
+                />
+              </div>
             ))}
           </Carousel>
         </div>
@@ -184,30 +188,32 @@ const Servicos = () => {
               Baralho Cigano
               <GiCardAceDiamonds  className="text-gold" />
             </h3>
-            <p className="text-primary/70 max-w-xl mx-auto mb-12">
+            <p className="text-primary/70 max-w-xl mx-auto">
               O Baralho Cigano é uma forma de oráculo que traz respostas diretas e práticas sobre questões do dia a dia. Nossas leituras são feitas com cartas ciganas, revelando insights sobre amor, dinheiro e saúde.
             </p>
           </div>
           <Carousel>
             {baralhoCiganoServicos.map((servico, index) => (
-              <Card
-                key={index}
-                title={servico.title}
-                price={servico.price}
-                description={servico.description}
-                icon={servico.icon}
-                variant='preco'
-                whileInView={{ opacity: 1, y: 0 }}
-                initial={{ opacity: 0, y: 40 }}
-                whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.1,
-                  scale: { duration: 0.3 },
-                  boxShadow: { duration: 0.3 },
-                }}
-                viewport={{ once: true }}
-              />
+            <div className="h-110 flex items-center justify-center p-4" key={index}>
+                <Card
+                  key={index}
+                  title={servico.title}
+                  price={servico.price}
+                  description={servico.description}
+                  icon={servico.icon}
+                  variant='preco'
+                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.25)' }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.1,
+                    scale: { duration: 0.3 },
+                    boxShadow: { duration: 0.3 },
+                  }}
+                  viewport={{ once: true }}
+                />
+              </div>
             ))}
           </Carousel>
         </div>
@@ -226,6 +232,7 @@ const Servicos = () => {
           </div>
           <Carousel>
             {emBreveServicos.map((servico, index) => (
+              <div className="h-full flex items-center justify-center p-4" key={index}>
               <Card
                 key={index}
                 title={servico.title}
@@ -246,6 +253,7 @@ const Servicos = () => {
                 }}
                 viewport={{ once: true }}
               />
+              </div>
             ))}
           </Carousel>
         </div>

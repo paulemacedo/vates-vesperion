@@ -1,22 +1,32 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useLayoutEffect } from 'react'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-// Oculta as setas padrão do slick
 const customArrowStyle = `
   .slick-arrow {
     display: none !important;
   }
   .slick-dots li button:before {
     color: gold !important;
-    opacity: 0,3 !important;
+    opacity: 0.3 !important;
   }
   .slick-dots li.slick-active button:before {
-    color: gold !important; /* gold-dark */
+    color: gold !important;
     opacity: 1 !important;
   }
+  .slick-track {
+    display: flex;
+    align-items: stretch;
+  }
+  .slick-slide > div {
+    height: auto;
+  }
+  .slick-slide > div > div {
+    height: auto;
+  }
 `
+
 const Arrow = ({ direction, onClick, disabled }) => {
   if (disabled) return null
   return (
@@ -59,66 +69,77 @@ const Arrow = ({ direction, onClick, disabled }) => {
 
 const Carousel = ({ children, slidesToShow = 3, ...props }) => {
   const sliderRef = useRef(null)
+  const wrapperRef = useRef(null)
   const [current, setCurrent] = useState(0)
   const [visibleSlides, setVisibleSlides] = useState(slidesToShow)
+  const [containerHeight, setContainerHeight] = useState(0)
+
   const slideCount = React.Children.count(children)
-  
-    // Atualiza slides visíveis conforme o breakpoint
+
+  // Ajusta altura automaticamente com base no maior slide
+  useLayoutEffect(() => {
+    const observer = new ResizeObserver(() => {
+      if (wrapperRef.current) {
+        const heights = [...wrapperRef.current.querySelectorAll('.slick-slide')]
+          .map(el => el.offsetHeight)
+        const max = Math.max(...heights, 0)
+        setContainerHeight(max)
+      }
+    })
+    if (wrapperRef.current) observer.observe(wrapperRef.current)
+    return () => observer.disconnect()
+  }, [children, visibleSlides])
+
+  React.useEffect(() => {
+    const styleTag = document.createElement('style')
+    styleTag.innerHTML = customArrowStyle
+    document.head.appendChild(styleTag)
+    return () => document.head.removeChild(styleTag)
+  }, [])
+
+  React.useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) setVisibleSlides(1)
       else if (window.innerWidth < 1024) setVisibleSlides(2)
       else setVisibleSlides(slidesToShow)
     }
-  
-    React.useEffect(() => {
-      handleResize()
-      window.addEventListener('resize', handleResize)
-      return () => window.removeEventListener('resize', handleResize)
-    }, [slidesToShow])
-  
-
-  // Injeta CSS para ocultar as setas padrão
-  React.useEffect(() => {
-    const styleTag = document.createElement('style')
-    styleTag.innerHTML = customArrowStyle
-    document.head.appendChild(styleTag)
-    return () => {
-      document.head.removeChild(styleTag)
-    }
-  }, [])
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [slidesToShow])
 
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: visibleSlides,
-    arrows: false, 
-    responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 768, settings: { slidesToShow: 1 } }
-    ],
+    adaptativeHeight: true,
+    arrows: false,
     beforeChange: (_, next) => setCurrent(next),
     ...props
   }
 
   return (
-    <div style={{ overflow: 'visible', position: 'relative' }}>
-      <Arrow
-        direction="left"
-        onClick={() => sliderRef.current?.slickGoTo(Math.max(0, current - visibleSlides))}
-        disabled={current === 0}
-      />
-      <Arrow
-        direction="right"
-        onClick={() => sliderRef.current?.slickGoTo(Math.min(slideCount - visibleSlides, current + visibleSlides))}
-        disabled={current >= slideCount - visibleSlides || slideCount <= visibleSlides}
-      />
-      <Slider ref={sliderRef} {...settings}>
-        {React.Children.map(children, child => (
-          <div className="px-4">{child}</div>
-        ))}
-      </Slider>
+    <div style={{ overflow: 'visible', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ position: 'relative' }}>
+        <Arrow
+          direction="left"
+          onClick={() => sliderRef.current?.slicSkGoTo(Math.max(0, current - visibleSlides))}
+          disabled={current === 0}
+        />
+        <Arrow
+          direction="right"
+          onClick={() => sliderRef.current?.slickGoTo(Math.min(slideCount - visibleSlides, current + visibleSlides))}
+          disabled={current >= slideCount - visibleSlides || slideCount <= visibleSlides}
+        />
+        <div ref={wrapperRef} style={{ minHeight: containerHeight }}>
+          <Slider ref={sliderRef} {...settings}>
+            {React.Children.map(children, child => (
+              <div className="px-4">{child}</div>
+            ))}
+          </Slider>
+        </div>
+      </div>
     </div>
   )
 }

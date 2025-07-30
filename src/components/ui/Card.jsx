@@ -17,7 +17,7 @@ const Card = ({
   return (
     <motion.div
       className={[
-        'relative bg-gradient-to-br from-primary/5 to-primary/10 backdrop-blur-sm border border-gold/20 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300',
+        'relative bg-gradient-to-br from-primary/5 to-primary/10 backdrop-blur-sm border border-gold/20 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 min-h-[20rem] flex flex-col h-80',
         indisponivel && 'opacity-60 saturate-50',
         className,
       ].filter(Boolean).join(' ')}

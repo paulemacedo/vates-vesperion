@@ -32,7 +32,7 @@ const Hero = () => {
       <SEO 
         title="Vates Vesperion - Leituras Oraculares Personalizadas"
         description="Consultas de Tarot, Baralho Cigano e oráculos. Descubra mensagens do universo com Vates Vesperion."
-        image="/hero-banner.jpg"
+        image="/hero-banner.png"
       />
     <motion.section
       id="hero"

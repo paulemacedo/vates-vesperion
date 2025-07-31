@@ -16,6 +16,7 @@ export const oracleData = {
       { src: "/images/oracles/Victorian-Steampunk-Tarot-8.jpg", caption: "Victorian Steampunk" },
       { src: "/images/oracles/ethereal-visions-luna-edition-4.jpg", caption: "Ethereal Visions Luna - Arcanos Maiores" },
       { src: "/images/oracles/victoria-steampunk-tarot-2.jpg", caption: "Victorian Steampunk" },
+      { src: "/images/oracles/rider-waite-2.png", caption: "Rider-Waite" },
       // { src: "/images/tarot-spread-1.jpg", caption: "Rider-Waite - Cruz Celta" },
       // { src: "/images/tarot-spread-2.jpg", caption: "Victorian Steampunk - Três Cartas" },
       // { src: "/images/tarot-spread-3.jpg", caption: "Ethereal Visions Luna - Mandala" }

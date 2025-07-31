@@ -11,9 +11,14 @@ export const oracleData = {
     description: "O Tarot é uma ferramenta ancestral de autoconhecimento composta por 78 cartas divididas em Arcanos Maiores e Menores. Cada carta carrega símbolos arquetípicos universais que falam diretamente ao inconsciente, revelando aspectos profundos da psique humana e do caminho espiritual.",
     usage: "Ideal para questões complexas de autoconhecimento, crescimento espiritual, relacionamentos profundos e decisões importantes da vida. O Tarot oferece uma visão panorâmica e profunda da situação, revelando não apenas o que está acontecendo, mas também as energias inconscientes em jogo e os possíveis desdobramentos futuros.",
     images: [
-      { src: "/images/tarot-spread-1.jpg", caption: "Rider-Waite - Cruz Celta" },
-      { src: "/images/tarot-spread-2.jpg", caption: "Victorian Steampunk - Três Cartas" },
-      { src: "/images/tarot-spread-3.jpg", caption: "Ethereal Visions Luna - Mandala" }
+      { src: "/images/oracles/ethereal-visions-luna-edition-2.png", caption: "Ethereal Visions Luna" },
+      { src: "/images/oracles/rider-waite-3.jpg", caption: "Rider-Waite" },
+      { src: "/images/oracles/Victorian-Steampunk-Tarot-8.jpg", caption: "Victorian Steampunk" },
+      { src: "/images/oracles/ethereal-visions-luna-edition-4.jpg", caption: "Ethereal Visions Luna - Arcanos Maiores" },
+      { src: "/images/oracles/victoria-steampunk-tarot-2.jpg", caption: "Victorian Steampunk" },
+      // { src: "/images/tarot-spread-1.jpg", caption: "Rider-Waite - Cruz Celta" },
+      // { src: "/images/tarot-spread-2.jpg", caption: "Victorian Steampunk - Três Cartas" },
+      // { src: "/images/tarot-spread-3.jpg", caption: "Ethereal Visions Luna - Mandala" }
     ],
     services: [
       {
@@ -62,9 +67,11 @@ export const oracleData = {
     description: "O Baralho Cigano é um oráculo prático e direto composto por 36 cartas que representam situações, pessoas e eventos do cotidiano. Originário da tradição cigana europeia, suas imagens são claras e objetivas, oferecendo respostas precisas sem rodeios.",
     usage: "Perfeito para questões práticas do dia a dia, decisões imediatas, situações profissionais, relacionamentos próximos e quando você precisa de respostas diretas e objetivas. Excelente para orientação sobre trabalho, vida social, questões financeiras e escolhas do presente momento.",
     images: [
-      { src: "/images/cigano-spread-1.jpg", caption: "Império das Águas - Grande Tableau" },
-      { src: "/images/cigano-spread-2.jpg", caption: "Império das Águas - Linha do Tempo" },
-      { src: "/images/cigano-spread-3.jpg", caption: "Império das Águas - Casa Astrológica" }
+      { src: "/images/oracles/lenormand-4.png", caption: "Baralho Cigano - Imperio das Águas" },
+      { src: "/images/oracles/lenormand-5.png", caption: "Baralho Cigano - Imperio das Águas" },
+      // { src: "/images/cigano-spread-1.jpg", caption: "Império das Águas - Grande Tableau" },
+      // { src: "/images/cigano-spread-2.jpg", caption: "Império das Águas - Linha do Tempo" },
+      // { src: "/images/cigano-spread-3.jpg", caption: "Império das Águas - Casa Astrológica" }
     ],
     services: [
       {
@@ -113,9 +120,7 @@ export const oracleData = {
     description: "A Sibilla é um oráculo italiano tradicional que carrega a sabedoria das antigas profetisas mediterrâneas. Com imagens diretas e simbologia rica, este oráculo oferece visões claras sobre o destino e as possibilidades futuras, mantendo a tradição divinatória italiana viva.",
     usage: "Excelente para questões sobre destino pessoal, previsões futuras, orientação divina e quando você busca uma perspectiva mais tradicional e profética sobre sua vida. Ideal para compreender o fluxo natural dos acontecimentos e receber orientações ancestrais sobre seu caminho.",
     images: [
-      { src: "/images/sibilla-spread-1.jpg", caption: "Sibilla Indovina - Passado, Presente, Futuro" },
-      { src: "/images/sibilla-spread-2.jpg", caption: "Sibilla Indovina - Cruz Simples" },
-      { src: "/images/sibilla-spread-3.jpg", caption: "Sibilla Indovina - Estrela de 7 Pontas" }
+      { src: "/images/oracles/sibilla-indovina.jpg", caption: "Sibilla Indovina" },
     ],
   },
   runas: {

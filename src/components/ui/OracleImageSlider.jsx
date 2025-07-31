@@ -73,7 +73,17 @@ const OracleImageSlider = ({
       onMouseLeave={handleMouseLeave}
     >
       <div className="aspect-[4/3] bg-gradient-to-br from-gold/20 to-purple-dark/50 rounded-2xl border border-gold/30 overflow-hidden">
-        <div className="w-full h-full flex items-center justify-center">
+        <img
+          src={images[currentIndex].src}
+          alt={images[currentIndex].caption}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            // Fallback para quando a imagem não carregar
+            e.target.style.display = 'none'
+            e.target.nextSibling.style.display = 'flex'
+          }}
+        />
+        <div className="w-full h-full flex items-center justify-center" style={{ display: 'none' }}>
           <div className="text-center p-8">
             <div className="text-6xl mb-4">🔮</div>
             <p className="text-gold text-lg font-semibold mb-2">

@@ -1,23 +1,39 @@
-
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setActiveCategory } from '../redux/slices/leituraSlice'
 import { HiMenu, HiX, HiChevronDown} from 'react-icons/hi'
 import { motion, AnimatePresence } from 'framer-motion'
-import { secoes } from './Servicos'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServiceMenuOpen, setIsServiceMenuOpen] = useState(false)
+  const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false) // Novo estado
+  const dispatch = useDispatch()
+
+  const categories = [
+    { id: 'tarot', name: 'Tarot' },
+    { id: 'cigano', name: 'Baralho Cigano' },
+    { id: 'sibilla', name: 'Sibilla' },
+    { id: 'runas', name: 'Runas Nórdicas' }
+  ]
+
+  const handleCategoryClick = (categoryId) => {
+    dispatch(setActiveCategory(categoryId))
+    setIsServiceMenuOpen(false)
+    setIsMenuOpen(false)
+    setIsMobileSubmenuOpen(false) // Fechar submenu mobile
+  }
 
   const navLinks = [
     { href: '#hero', label: 'Home' },
-    { href: '#leituras', label: 'Leituras' },
     { 
-      href: '#servicos', 
-      label: 'Serviços', 
+      href: '#leituras', 
+      label: 'Leituras', 
       hasSubmenu: true,
-      submenu: secoes.map(secao => ({
-        href: `#${secao.id}`,
-        label: secao.titulo,
+      submenu: categories.map(category => ({
+        href: `#leituras`,
+        label: category.name,
+        onClick: () => handleCategoryClick(category.id)
       })),
     },
     { href: '#faq', label: 'FAQ' },
@@ -49,7 +65,7 @@ const Header = () => {
                   {link.hasSubmenu && <HiChevronDown className="text-xs" />}  
                 </a>
 
-                {/* Submenu */}
+                {/* Desktop Submenu */}
                 {link.hasSubmenu && (
                   <AnimatePresence>
                     {isServiceMenuOpen && (
@@ -64,6 +80,7 @@ const Header = () => {
                           <a 
                             key={subLink.href}
                             href={subLink.href}
+                            onClick={subLink.onClick}
                             className="block px-4 py-2 font-montserrat text-sm text-gold hover:bg-gold/10 transition-colors"
                             >
                               {subLink.label}
@@ -99,27 +116,50 @@ const Header = () => {
             >
               {navLinks.map((link) => (
                 <li key={link.href} className="text-center">
-                  <a 
-                    href={link.href}
-                    className="font-montserrat text-sm text-gold uppercase tracking-wider hover:opacity-70 transition-opacity"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                  {/* Submenu for Services */}
-                  {link.hasSubmenu && (
-                    <div className="mt-2 space-y-2">
-                      {link.submenu.map((subLink) => (
-                        <a 
-                          key={subLink.href}
-                          href={subLink.href}
-                          className="block font-montserrat text-xs text-gold/80 hover:bg-gold transition-colors py-1"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {subLink.label}
-                        </a>
-                      ))}
+                  {link.hasSubmenu ? (
+                    // Link com submenu - botão para expandir
+                    <div>
+                      <button
+                        onClick={() => setIsMobileSubmenuOpen(!isMobileSubmenuOpen)}
+                        className="font-montserrat text-sm text-gold uppercase tracking-wider hover:opacity-70 transition-opacity flex items-center justify-center gap-1 mx-auto"
+                      >
+                        {link.label}
+                        <HiChevronDown className={`text-xs transition-transform ${isMobileSubmenuOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      {/* Mobile Submenu */}
+                      <AnimatePresence>
+                        {isMobileSubmenuOpen && (
+                          <motion.div
+                            className="mt-2 space-y-2 bg-gold/10 rounded-md py-2 mx-4"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            {link.submenu.map((subLink) => (
+                              <a 
+                                key={subLink.href}
+                                href={subLink.href}
+                                onClick={subLink.onClick}
+                                className="block font-montserrat text-xs text-gold/80 hover:text-gold transition-colors py-1"
+                              >
+                                {subLink.label}
+                              </a>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
+                  ) : (
+                    // Link normal
+                    <a 
+                      href={link.href}
+                      className="font-montserrat text-sm text-gold uppercase tracking-wider hover:opacity-70 transition-opacity"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
                   )}
                 </li>
               ))}

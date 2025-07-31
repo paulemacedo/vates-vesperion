@@ -1,7 +1,6 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Leituras from './components/Leituras'
-import Servicos from './components/Servicos'
 import Sobre from './components/Sobre'
 import FAQ from './components/FAQ'
 import Depoimentos from './components/Depoimentos'
@@ -13,8 +12,6 @@ import { useState } from 'react'
 const sections = [
   { Component: Hero },
   { Component: Leituras },
-  { Component: Servicos },
-  // { Component: Sobre },
   { Component: FAQ },
   { Component: Depoimentos },
 ];

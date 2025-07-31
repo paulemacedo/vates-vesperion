@@ -9,6 +9,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { BiSolidRightArrow } from "react-icons/bi";
 import star from '../assets/images/stars.gif'
 import { FaInstagram, FaTiktok, FaWhatsapp, FaYoutube} from 'react-icons/fa';
+import SEO from './ui/SEO'
 
 
 const Hero = () => {
@@ -27,6 +28,12 @@ const Hero = () => {
   }, [texts.length])
 
   return (
+     <>
+      <SEO 
+        title="Vates Vesperion - Leituras Oraculares Personalizadas"
+        description="Consultas de Tarot, Baralho Cigano e oráculos. Descubra mensagens do universo com Vates Vesperion."
+        image="/hero-banner.jpg"
+      />
     <motion.section
       id="hero"
       className="relative flex flex-col md:flex-row items-center justify-center min-h-screen overflow-hidden px-2 sm:px-10 max-w-[1100px] mx-auto"
@@ -203,9 +210,6 @@ const Hero = () => {
         </motion.div>
         
       </div>
-  
-  
-
 
       {/* Scroll Indicator */}
       <motion.div
@@ -236,6 +240,7 @@ const Hero = () => {
         </motion.div>
       </motion.div>
     </motion.section>
+  </>
   )
 }
 

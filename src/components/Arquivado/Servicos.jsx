@@ -1,6 +1,6 @@
 import React from 'react'
-import Card from './ui/Card'
-import Carousel from './ui/Carousel'
+import Card from '../ui/Card'
+import Carousel from '../ui/Carousel'
 import { 
   GiHeraldicSun, 
   GiEclipse, 

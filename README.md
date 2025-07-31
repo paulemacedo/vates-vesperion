@@ -52,7 +52,7 @@ Acesse em [vatesvesperion.vercel.app](https://vatesvesperion.vercel.app).
 ## � Screenshots
 
 <p align="center">
-  <img src="https://vatesvesperion.vercel.app/Meta.png" alt="Vates Vesperion Screenshot" />
+  <img src="https://vatesvesperion.vercel.app/hero-banner.png" alt="Vates Vesperion Screenshot" />
 </p>
 
 ## 🛠️ Instalação e Uso

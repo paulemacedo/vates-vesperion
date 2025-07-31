@@ -13,28 +13,25 @@ const HeroContent = ({
   showDecorative = true
 }) => {
   return (
-    <div className="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-1/2 order-2 lg:order-1 px-4 lg:px-0 lg:pr-8">
+    <div className="hero-content order-2 lg:order-1 px-4 lg:px-0 lg:pr-8">
       
       {/* Título Principal */}
       <motion.h1
-        className={`text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 lg:mb-6 leading-tight ${
+        className={`hero-title mb-3 sm:mb-4 lg:mb-6 ${
           titleVariant === "gradient" 
-            ? "text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-300 to-gold"
+            ? "hero-title-gradient"
             : "text-gold"
         }`}
         initial={{ y: -50, opacity: 0, scale: 0.8 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
-        style={{
-          filter: titleVariant === "gradient" ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'none'
-        }}
       >
         {title}
       </motion.h1>
 
       {/* Typewriter Effect */}
       <motion.div
-        className="relative text-primary/70 mb-6 sm:mb-6 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl flex items-center justify-center lg:justify-start w-full"
+        className="hero-typewriter mb-6 sm:mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.8 }}
@@ -86,7 +83,7 @@ const HeroContent = ({
       
       {/* Call to Action */}
       <motion.div
-        className="mb-8 lg:mb-0"
+        className="hero-cta-container"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
@@ -116,7 +113,7 @@ const HeroContent = ({
             rel="noopener noreferrer"
             variant="primary"
             size="lg"
-            className="relative z-10 px-6 sm:px-8 lg:px-10 xl:px-12 py-3 lg:py-3 xl:py-4 text-sm sm:text-base lg:text-base xl:text-lg font-semibold"
+            className="relative z-10 font-semibold w-full sm:w-auto max-w-xs sm:max-w-none"
           >
             {ctaText}
           </Button>

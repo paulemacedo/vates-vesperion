@@ -45,7 +45,7 @@ const Hero = () => {
       <div className="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-1/2 order-2 lg:order-1 px-4 lg:px-0 lg:pr-8">
         {/* Title */}
         <motion.h1
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-300 to-gold mb-3 sm:mb-4 lg:mb-6 leading-tight"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-6xl 2xl:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-300 to-gold mb-3 sm:mb-4 lg:mb-6 leading-tight"
           initial={{ y: -50, opacity: 0, scale: 0.8 }}
           animate={{ y: 0, opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
@@ -58,7 +58,7 @@ const Hero = () => {
   
         {/* Typewriter */}
         <motion.div
-          className="relative text-primary/70 mb-6 sm:mb-8 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl flex items-center justify-center lg:justify-start w-full"
+          className="relative text-primary/70 mb-6 sm:mb-6 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl flex items-center justify-center lg:justify-start w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
@@ -158,13 +158,13 @@ const Hero = () => {
         {/* Mystical Ring Animation */}
         <motion.div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold/30 
-            w-50 h-48 xs:w-56 xs:h-64 sm:w-60 sm:h-72 md:w-64 md:h-80 lg:w-93 lg:h-90 pointer-events-none z-0"
+            w-50 h-48 xs:w-56 xs:h-64 sm:w-60 sm:h-72 md:w-64 md:h-80 lg:w-83 lg:h-80 xl:w-93 xl:h-90 pointer-events-none z-0"
           animate={{ rotate: 360 }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/20 
-            w-45 h-44 xs:w-52 xs:h-60 sm:w-56 sm:h-68 md:w-60 md:h-76 lg:w-88 lg:h-88 pointer-events-none z-0"
+            w-45 h-44 xs:w-52 xs:h-60 sm:w-56 sm:h-68 md:w-60 md:h-76 lg:w-78 lg:h-78 xl:w-88 xl:h-88 pointer-events-none z-0"
           animate={{ rotate: -360 }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         />
@@ -173,7 +173,7 @@ const Hero = () => {
           <motion.img
             src={tframe}
             alt="Vates Vesperion"
-            className="w-40 h-40 xs:w-56 xs:h-56 sm:w-60 sm:h-60 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full shadow-2xl"
+            className="w-40 h-40 xs:w-56 xs:h-56 sm:w-60 sm:h-60 md:w-64 md:h-64 lg:w-70 lg:h-70 xl:w-80 xl:h-80 object-cover rounded-full shadow-2xl"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           />

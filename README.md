@@ -107,8 +107,8 @@ src/
 ├── components/          # Componentes React
 │   ├── ui/             # Componentes reutilizáveis
 │   ├── Hero.jsx        # Seção principal
-│   ├── Sobre.jsx       # Sobre o oráculo
-│   ├── Servicos.jsx    # Catálogo de serviços
+│   ├── Sobre.jsx       # Sobre o Vates Vesperion
+│   ├── Leituras.jsx    # Lista de leituras
 │   ├── Depoimentos.jsx # Testemunhos
 │   └── FAQ.jsx         # Perguntas frequentes
 ├── redux/              # Estado global

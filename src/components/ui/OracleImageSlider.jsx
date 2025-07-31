@@ -1,8 +1,77 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
-const OracleImageSlider = ({ images, currentIndex, onNext, onPrev, onIndexChange }) => {
+const Arrow = ({ direction, onClick, disabled }) => {
+  if (disabled) return null
+  
   return (
-    <div className="relative">
+    <button
+      className={`oracle-arrow ${direction === "left" ? "oracle-arrow-left" : "oracle-arrow-right"}`}
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={direction === "left" ? "Anterior" : "Próximo"}
+      tabIndex={0}
+    >
+      {direction === "left" ? (
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <path d="M28 36L16 22L28 8" stroke="#FFD700" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ) : (
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <path d="M16 8L28 22L16 36" stroke="#FFD700" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      )}
+    </button>
+  )
+}
+
+const OracleImageSlider = ({ 
+  images, 
+  currentIndex, 
+  onNext, 
+  onPrev, 
+  onIndexChange,
+  autoPlay = true,
+  autoPlaySpeed = 4000,
+  showArrows = false
+}) => {
+  const intervalRef = useRef(null)
+
+  // Auto play functionality
+  useEffect(() => {
+    if (autoPlay && images.length > 1) {
+      intervalRef.current = setInterval(() => {
+        onNext()
+      }, autoPlaySpeed)
+
+      return () => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current)
+        }
+      }
+    }
+  }, [autoPlay, autoPlaySpeed, onNext, images.length])
+
+  // Pause auto play on hover
+  const handleMouseEnter = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (autoPlay && images.length > 1) {
+      intervalRef.current = setInterval(() => {
+        onNext()
+      }, autoPlaySpeed)
+    }
+  }
+
+  return (
+    <div 
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="aspect-[4/3] bg-gradient-to-br from-gold/20 to-purple-dark/50 rounded-2xl border border-gold/30 overflow-hidden">
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center p-8">
@@ -16,18 +85,20 @@ const OracleImageSlider = ({ images, currentIndex, onNext, onPrev, onIndexChange
       </div>
 
       {/* Controles */}
-      <button 
-        onClick={onPrev} 
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-midnight/80 border border-gold/30 text-gold p-2 rounded-full hover:bg-gold hover:text-midnight transition"
-      >
-        ←
-      </button>
-      <button 
-        onClick={onNext} 
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-midnight/80 border border-gold/30 text-gold p-2 rounded-full hover:bg-gold hover:text-midnight transition"
-      >
-        →
-      </button>
+      {showArrows && (
+        <>
+          <Arrow
+            direction="left"
+            onClick={onPrev}
+            disabled={images.length <= 1}
+          />
+          <Arrow
+            direction="right"
+            onClick={onNext}
+            disabled={images.length <= 1}
+          />
+        </>
+      )}
 
       {/* Indicadores */}
       <div className="flex justify-center space-x-2 mt-4">

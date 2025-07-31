@@ -9,7 +9,7 @@ import OracleInfo from './ui/OracleInfo'
 import OracleServices from './ui/OracleServices'
 import SEO from './ui/SEO'
 
-const Leituras = () => {
+const Leituras = ({ hidePromotions = false }) => {
   const activeCategory = useSelector(state => state.leitura.activeCategory)
   const dispatch = useDispatch()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -99,6 +99,7 @@ const Leituras = () => {
             <OracleServices 
               oracle={currentOracle}
               activeCategory={activeCategory}
+              hidePromotions={hidePromotions}
             />
           </motion.div>
         </AnimatePresence>

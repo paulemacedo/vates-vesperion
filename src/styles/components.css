@@ -39,4 +39,21 @@
   .card-badge {
     @apply absolute top-4 left-4 bg-red-600/50 text-white text-xs px-3 py-1 rounded-full z-10 shadow-lg uppercase font-bold;
   }
+
+  /* Oracle Slider Arrow Styles */
+  .oracle-arrow {
+    @apply flex items-center justify-center bg-transparent border-0 rounded-full w-14 h-14 z-10 cursor-pointer absolute top-1/2 transform -translate-y-1/2 p-0;
+  }
+
+  .oracle-arrow-left {
+    @apply -left-7;
+  }
+
+  .oracle-arrow-right {
+    @apply -right-7;
+  }
+
+  .oracle-arrow:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
 }

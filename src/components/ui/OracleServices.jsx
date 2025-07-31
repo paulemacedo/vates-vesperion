@@ -3,9 +3,29 @@ import Carousel from './Carousel'
 import Card from './Card'
 import { renderIcon } from '../../utils/iconHelper'
 
-const OracleServices = ({ oracle, activeCategory }) => {
+const OracleServices = ({ oracle, activeCategory, hidePromotions = false }) => {
   const hasServices = oracle.services && oracle.services.length > 0
   const isComingSoon = activeCategory === 'sibilla' || activeCategory === 'runas'
+
+  // Função para processar os serviços
+  const processServices = (services) => {
+    if (!hidePromotions) return services
+    
+    return services.map(service => {
+      if (service.hasDiscount && service.originalPrice) {
+        return {
+          ...service,
+          price: service.originalPrice,
+          originalPrice: undefined,
+          hasDiscount: false
+          // Mantém o destacado original - só remove promoções, não destaques
+        }
+      }
+      return service
+    })
+  }
+
+  const processedServices = hasServices ? processServices(oracle.services) : []
 
   return (
     <div className="relative rounded-2xl px-6 py-8 bg-gradient-to-br from-purple-dark/40 via-gold/10 to-purple-dark/40">
@@ -22,7 +42,7 @@ const OracleServices = ({ oracle, activeCategory }) => {
         </div>
       ) : (
         <Carousel>
-          {oracle.services.map((service, index) => (
+          {processedServices.map((service, index) => (
             <div className="h-100 flex items-center justify-center p-4" key={index}>
               <Card
                 title={service.title}

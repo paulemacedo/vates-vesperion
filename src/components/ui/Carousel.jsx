@@ -31,25 +31,7 @@ const Arrow = ({ direction, onClick, disabled }) => {
   if (disabled) return null
   return (
     <button
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "none",
-        border: "none",
-        borderRadius: "50%",
-        width: 56,
-        height: 56,
-        zIndex: 2,
-        color: "#FFD700",
-        boxShadow: "none",
-        cursor: "pointer",
-        position: "absolute",
-        top: "50%",
-        transform: "translateY(-50%)",
-        ...(direction === "left" ? { left: -28 } : { right: -28 }),
-        padding: 0,
-      }}
+      className={`oracle-arrow ${direction === "left" ? "oracle-arrow-left" : "oracle-arrow-right"}`}
       onClick={onClick}
       aria-label={direction === "left" ? "Anterior" : "Próximo"}
       tabIndex={0}

@@ -28,24 +28,31 @@ export const oracleData = {
         price: 'R$ 30,00',
         originalPrice: 'R$ 40,00',
         hasDiscount: true,
+        destacado: true,
         description: 'Múltiplas questões para uma visão abrangente da situação.'
       },
       {
         iconType: 'FaHeart',
         title: 'Amor Revelado',
         price: 'R$ 40,00',
+        originalPrice: 'R$ 45,00',
+        hasDiscount: true,
         description: 'Especializada em questões amorosas e relacionamentos.'
       },
       {
         iconType: 'GiHeraldicSun',
         title: 'Mandala da Vida',
         price: 'R$ 60,00',
+        originalPrice: 'R$ 65,00',
+        hasDiscount: true,
         description: 'Leitura completa: amor, trabalho, saúde e espiritualidade.'
       },
       {
         iconType: 'GiEclipse',
         title: '1h de consulta',
         price: 'R$ 80,00',
+        originalPrice: 'R$ 85,00',
+        hasDiscount: true,
         description: 'Consulta completa de 1 hora com leitura de tarot, análise de cartas e orientações personalizadas.'
       }
     ]
@@ -79,7 +86,25 @@ export const oracleData = {
         iconType: 'FaHeart',
         title: 'Amor Revelado',
         price: 'R$ 35,00',
+        originalPrice: 'R$ 40,00',
+        hasDiscount: true,
         description: 'Dinâmica amorosa com a objetividade cigana.'
+      },
+      {
+        iconType: 'GiHeraldicSun',
+        title: 'Mandala da Vida',
+        price: 'R$ 50,00',
+        originalPrice: 'R$ 55,00',
+        hasDiscount: true,
+        description: 'Leitura completa com foco em amor, trabalho e vida social.'
+      },
+      {
+        iconType: 'GiEclipse',
+        title: '1h de consulta',
+        price: 'R$ 70,00',
+        originalPrice: 'R$ 75,00',
+        hasDiscount: true,
+        description: 'Consulta completa de 1 hora com leitura de baralho cigano, análise de cartas e orientações práticas.'
       }
     ]
   },

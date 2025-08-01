@@ -7,7 +7,10 @@ import Depoimentos from './components/Depoimentos'
 import Footer from './components/Footer'
 import Particles from './components/ui/Particles'
 import './index.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadDailyCardFromStorage } from './redux/slices/dailyCardSlice'
+
 
 const sections = [
   { Component: Hero },
@@ -19,6 +22,19 @@ const sections = [
 const bgClasses = ['bg-midnight', 'bg-purple-dark'];
 
 function App() {
+  const dispatch = useDispatch()
+    const { currentCard } = useSelector(state => state.dailyCard)
+
+
+  // Carregar carta diária na inicialização
+  useEffect(() => {
+    dispatch(loadDailyCardFromStorage())
+  }, [dispatch])
+
+  // Debug do estado
+  useEffect(() => {
+    console.log('📱 Estado da carta no App:', currentCard)
+  }, [currentCard])
   return (
     <div className="bg-midnight text-text-primary">
       <Particles />

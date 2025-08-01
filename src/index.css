@@ -6,4 +6,5 @@
 @import "./styles/preflight.css" layer(base);
 @import "./styles/typography.css" layer(base);
 @import "./styles/components.css" layer(components);
+@import "./styles/easter-egg.css" layer(components);
 @import "./styles/utilities.css" layer(utilities);

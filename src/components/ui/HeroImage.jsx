@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import Notification from './Notification'
 
 const HeroImage = ({
   src,
@@ -158,33 +159,6 @@ const HeroImage = ({
                   {clickCount}
                 </motion.div>
               )}
-
-              {/* Dica visual quando está próximo - VERSÃO ELEGANTE COM CSS */}
-              {enableEasterEgg && clickCount === 2 && currentCard && (
-                <motion.div
-                  className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 easter-egg-hint"
-                  initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex items-center gap-2">
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    >
-                      🔮
-                    </motion.div>
-                    <span>Mais um toque...</span>
-                    <motion.div
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    >
-                      ✨
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )}
             </div>
           </motion.div>
         ) : (
@@ -324,72 +298,67 @@ const HeroImage = ({
                 />
               ))}
             </div>
-
-            {/* Indicador Easter Egg - VERSÃO ELEGANTE COM CSS
-            <motion.div
-              className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 easter-egg-activated"
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              <div className="flex items-center gap-3">
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 360],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    rotate: { duration: 4, repeat: Infinity, ease: "linear" },
-                    scale: { duration: 2, repeat: Infinity }
-                  }}
-                >
-                  🔮
-                </motion.div>
-                
-                <span className="tracking-wide">Carta Revelada</span>
-                
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.3, 1],
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{ 
-                    duration: 1.5, 
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  ✨
-                </motion.div>
-              </div>
-              
-              // Partículas douradas pequenas 
-              <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
-                {[...Array(3)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="easter-egg-particle"
-                    style={{
-                      left: `${20 + i * 30}%`,
-                      top: '50%',
-                    }}
-                    animate={{
-                      y: [-8, 8, -8],
-                      opacity: [0.3, 1, 0.3],
-                      scale: [0.5, 1, 0.5]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.3
-                    }}
-                  />
-                ))}
-              </div>
-            </motion.div> */}
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Notificações */}
+      <Notification
+        type="hint"
+        show={enableEasterEgg && clickCount === 2 && currentCard}
+      >
+        <div className="flex items-center gap-2">
+          <motion.div
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          >
+            🔮
+          </motion.div>
+          <span>Mais um toque...</span>
+          <motion.div
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          >
+            ✨
+          </motion.div>
+        </div>
+      </Notification>
+
+      <Notification
+        type="success"
+        show={showCard && currentCard}
+      >
+        <div className="flex items-center gap-3">
+          <motion.div
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              rotate: { duration: 4, repeat: Infinity, ease: "linear" },
+              scale: { duration: 2, repeat: Infinity }
+            }}
+          >
+            🔮
+          </motion.div>
+          
+          <span className="tracking-wide">Carta Revelada</span>
+          
+          <motion.div
+            animate={{ 
+              scale: [1, 1.3, 1],
+              opacity: [0.7, 1, 0.7]
+            }}
+            transition={{ 
+              duration: 1.5, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            ✨
+          </motion.div>
+        </div>
+      </Notification>
     </motion.div>
   )
 }

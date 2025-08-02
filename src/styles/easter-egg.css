@@ -35,54 +35,6 @@
     transform: rotateY(180deg);
   }
 
-  /* Easter Egg - Indicadores estilizados */
-  .easter-egg-activated {
-    @apply bg-gradient-to-r from-purple-900/90 via-purple-800/90 to-purple-900/90 
-           text-gold px-4 py-2 rounded-full text-xs font-semibold 
-           border border-gold/50 backdrop-blur-sm;
-    box-shadow: 0 4px 15px rgba(214, 185, 91, 0.2), 0 8px 25px rgba(214, 185, 91, 0.4);
-    animation: easter-egg-glow 2s infinite;
-  }
-
-  .easter-egg-hint {
-    @apply bg-gradient-to-r from-gold/20 via-gold/30 to-gold/20 
-           backdrop-blur-md text-gold px-6 py-3 rounded-full text-sm font-bold
-           border-2 border-gold/60;
-    box-shadow: 0 8px 25px rgba(214, 185, 91, 0.3), 0 12px 35px rgba(255, 215, 0, 0.5);
-    animation: easter-egg-pulse 3s infinite;
-  }
-
-  /* Animações para Easter Egg */
-  @keyframes easter-egg-glow {
-    0%, 100% {
-      box-shadow: 0 4px 15px rgba(214, 185, 91, 0.2);
-    }
-    50% {
-      box-shadow: 0 8px 25px rgba(214, 185, 91, 0.4);
-    }
-  }
-
-  @keyframes easter-egg-pulse {
-    0%, 100% {
-      border-color: rgba(214, 185, 91, 0.6);
-      box-shadow: 0 8px 25px rgba(214, 185, 91, 0.3);
-    }
-    50% {
-      border-color: rgba(255, 215, 0, 0.8);
-      box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
-    }
-  }
-
-  /* Easter Egg particles */
-  .easter-egg-particle {
-    @apply absolute w-1 h-1 bg-gold rounded-full;
-  }
-
-  /* Easter Egg shine effect */
-  .easter-egg-shine {
-    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent;
-  }
-
   /* Textos da carta - Melhor legibilidade */
   .tarot-card-title {
     @apply text-gold font-bold text-center drop-shadow-lg;

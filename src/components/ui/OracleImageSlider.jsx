@@ -25,8 +25,8 @@ const Arrow = ({ direction, onClick, disabled }) => {
 }
 
 const OracleImageSlider = ({ 
-  images, 
-  currentIndex, 
+  images = [], 
+  currentIndex = 0, 
   onNext, 
   onPrev, 
   onIndexChange,
@@ -35,6 +35,15 @@ const OracleImageSlider = ({
   showArrows = false
 }) => {
   const intervalRef = useRef(null)
+
+  // Early return if no images
+  if (!images || !Array.isArray(images) || images.length === 0) {
+    return (
+      <div className="w-full h-64 bg-gold/10 rounded-lg flex items-center justify-center">
+        <p className="text-gold/60">Nenhuma imagem disponível</p>
+      </div>
+    )
+  }
 
   // Auto play functionality
   useEffect(() => {
@@ -122,7 +131,7 @@ const OracleImageSlider = ({
       </div>
 
       <p className="text-center text-gold/80 text-sm mt-3 font-medium">
-        {images[currentIndex].caption}
+        {images[currentIndex]?.caption || 'Sem legenda'}
       </p>
     </div>
   )

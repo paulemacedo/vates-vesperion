@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
+const CategoryFilter = ({ categories = [], activeCategory, onCategoryChange }) => {
   return (
     <motion.div
       className="flex flex-wrap justify-center gap-3 mb-12"
@@ -10,7 +10,7 @@ const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      {categories.map((category) => (
+      {categories && categories.map((category) => (
         <button
           key={category.id}
           onClick={() => onCategoryChange(category.id)}

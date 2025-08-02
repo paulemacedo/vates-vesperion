@@ -17,11 +17,13 @@ const Leituras = ({ hidePromotions = false }) => {
   const currentOracle = oracleData[activeCategory]
 
   const nextImage = () => {
+    if (!currentOracle || !currentOracle.images) return
     const images = currentOracle.images
     setCurrentImageIndex((prev) => (prev + 1) % images.length)
   }
 
   const prevImage = () => {
+    if (!currentOracle || !currentOracle.images) return
     const images = currentOracle.images
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
   }
@@ -77,30 +79,36 @@ const Leituras = ({ hidePromotions = false }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-16">
               {/* Slideshow */}
               <div className="order-2 lg:order-1">
-                <OracleImageSlider
-                  images={currentOracle.images}
-                  currentIndex={currentImageIndex}
-                  onNext={nextImage}
-                  onPrev={prevImage}
-                  onIndexChange={setCurrentImageIndex}
-                />
+                {currentOracle && currentOracle.images && (
+                  <OracleImageSlider
+                    images={currentOracle.images}
+                    currentIndex={currentImageIndex}
+                    onNext={nextImage}
+                    onPrev={prevImage}
+                    onIndexChange={setCurrentImageIndex}
+                  />
+                )}
               </div>
 
               {/* Informações do Oráculo */}
               <div className="order-1 lg:order-2">
-                <OracleInfo 
-                  oracle={currentOracle}
-                  activeCategory={activeCategory}
-                />
+                {currentOracle && (
+                  <OracleInfo 
+                    oracle={currentOracle}
+                    activeCategory={activeCategory}
+                  />
+                )}
               </div>
             </div>
 
             {/* Serviços do Oráculo */}
-            <OracleServices 
-              oracle={currentOracle}
-              activeCategory={activeCategory}
-              hidePromotions={hidePromotions}
-            />
+            {currentOracle && (
+              <OracleServices 
+                oracle={currentOracle}
+                activeCategory={activeCategory}
+                hidePromotions={hidePromotions}
+              />
+            )}
           </motion.div>
         </AnimatePresence>
       </div>

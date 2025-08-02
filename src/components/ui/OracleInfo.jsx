@@ -1,6 +1,11 @@
 import React from 'react'
 
 const OracleInfo = ({ oracle, activeCategory }) => {
+  // Adicionar verificação se oracle existe
+  if (!oracle) {
+    return null
+  }
+
   const hasServices = oracle.services && oracle.services.length > 0
 
   return (

@@ -4,12 +4,17 @@ import Card from './Card'
 import { renderIcon } from '../../utils/iconHelper'
 
 const OracleServices = ({ oracle, activeCategory, hidePromotions = false }) => {
+  // Adicionar verificação se oracle existe
+  if (!oracle) {
+    return null
+  }
+
   const hasServices = oracle.services && oracle.services.length > 0
   const isComingSoon = activeCategory === 'sibilla' || activeCategory === 'runas'
 
   // Função para processar os serviços
   const processServices = (services) => {
-    if (!hidePromotions) return services
+    if (!services || !Array.isArray(services) || !hidePromotions) return services || []
     
     return services.map(service => {
       if (service.hasDiscount && service.originalPrice) {

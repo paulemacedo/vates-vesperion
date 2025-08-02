@@ -30,7 +30,7 @@ const Header = () => {
       href: '#leituras', 
       label: 'Leituras', 
       hasSubmenu: true,
-      submenu: categories.map(category => ({
+      submenu: (categories || []).map(category => ({
         href: `#leituras`,
         label: category.name,
         onClick: () => handleCategoryClick(category.id)

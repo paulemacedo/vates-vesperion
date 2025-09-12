@@ -1,0 +1,49 @@
+
+
+Seção 1:
+
+- O texto “Baths” no filtro de busca está com tamanho de fonte menor em relação aos demais filtros
+- Ainda no filtro alguns possuem ícone e outros não
+- O preço "$1890" não está alinhado com o texto
+
+Seção 2:
+
+- Espaçamento entre os títulos e preços dos cards não está padronizado
+- O botão "Load More" não está centralizado
+- Falta ícone de metros quadrados em um dos cards (Complex)
+
+Seção 3:
+
+- Container do formulário não está centralizado verticalmente na área da seção 3
+- Formulário está deslocado à direita no container
+- Últimos 4 campos do formulário têm espaçamento diferente dos anteriores
+- Botão “Submit” não está com a mesma largura dos campos de texto acima, quebrando a simetria
+
+Seção 4:
+
+- O card “Villa” possui altura diferente dos demais
+- O conjunto de cards não está centralizado
+
+Seção 5:
+
+- O espaçamento entre o título “Why Houzez Is The Perfect Choice?” e os três blocos de texto não é uniforme
+
+Seção 6:
+
+- Foto da Michele está menor que as demais
+- O cargo e o Texto da Michele está com espaçamento diferente dos demais
+- Última linha divisória está com opacidade diferente
+- Último “View Profile” está mais baixo
+
+Seção 7:
+
+- Espaçamento entre os cards está diferente
+- Texto “Lorem ipsum” não está alinhado com o título
+- “By Mike” também não está alinhado com os cards
+
+Seção 8:
+
+- Botão “Submit” está com o padding errado, descentralizando o conteúdo
+- Não tinha necessidade de um duplo footer
+- Rede social Pinterest está sem ícone
+

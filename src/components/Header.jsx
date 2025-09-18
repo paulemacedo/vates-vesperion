@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { setActiveCategory } from '../redux/slices/leituraSlice'
 import { HiMenu, HiX, HiChevronDown} from 'react-icons/hi'
 import { motion, AnimatePresence } from 'framer-motion'
+import { categories as categories } from '../data/oracleData'
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -10,22 +12,16 @@ const Header = () => {
   const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false) // Novo estado
   const dispatch = useDispatch()
 
-  const categories = [
-    { id: 'tarot', name: 'Tarot' },
-    { id: 'cigano', name: 'Baralho Cigano' },
-    { id: 'sibilla', name: 'Sibilla' },
-    { id: 'runas', name: 'Runas Nórdicas' }
-  ]
-
   const handleCategoryClick = (categoryId) => {
     dispatch(setActiveCategory(categoryId))
     setIsServiceMenuOpen(false)
     setIsMenuOpen(false)
-    setIsMobileSubmenuOpen(false) // Fechar submenu mobile
+    setIsMobileSubmenuOpen(false)
   }
 
   const navLinks = [
-    { href: '#hero', label: 'Home' },
+    { href: '/shop', label: 'Loja' },
+    { href: '/', label: 'Home' },
     { 
       href: '#leituras', 
       label: 'Leituras', 
@@ -70,7 +66,7 @@ const Header = () => {
                   <AnimatePresence>
                     {isServiceMenuOpen && (
                       <motion.div
-                        className="absolute top-full left-0 mt-2 bg-midnight border border-gold/30 rounded-md shadow-lg min-w-[180px] py-2 z-[60]"
+                        className="absolute top-full left-0 mt-2 bg-midnight border border-gold/30 rounded-md shadow-lg min-w-[190px] py-2 z-[60]"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}

@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Leituras from './components/Leituras'
@@ -6,6 +7,7 @@ import FAQ from './components/FAQ'
 import Depoimentos from './components/Depoimentos'
 import Footer from './components/Footer'
 import Particles from './components/ui/Particles'
+import Shop from './components/Shop'
 import './index.css'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -35,18 +37,30 @@ function App() {
   useEffect(() => {
     console.log('📱 Estado da carta no App:', currentCard)
   }, [currentCard])
-  return (
-    <div className="bg-midnight text-text-primary">
+  
+return (
+  <Router>
+    <div className="bg-midnight text-text-primary min-h-screen flex flex-col">
       <Particles />
       <Header />
-      {sections.map(({ Component }, idx) => (
-        <div key={idx} className={bgClasses[idx % bgClasses.length]}>
-          <Component />
-        </div>
-      ))}
-      <Footer />    
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={
+            <>
+              {sections.map(({ Component }, idx) => (
+                <div key={idx} className={bgClasses[idx % bgClasses.length]}>
+                  <Component />
+                </div>
+              ))}
+            </>
+          } />
+          <Route path="/shop" element={<Shop />} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
-  )
+  </Router>
+)
 }
 
 export default App

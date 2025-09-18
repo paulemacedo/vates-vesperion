@@ -19,11 +19,19 @@ const customArrowStyle = `
     display: flex;
     align-items: stretch;
   }
-  .slick-slide > div {
-    height: auto;
+  .slick-slide {
+    display: flex !important;
+    align-items: stretch;
   }
-  .slick-slide > div > div {
-    height: auto;
+  .slick-slide > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slick-list {
+    overflow: hidden;
   }
 `
 
@@ -35,6 +43,16 @@ const Arrow = ({ direction, onClick, disabled }) => {
       onClick={onClick}
       aria-label={direction === "left" ? "Anterior" : "Próximo"}
       tabIndex={0}
+      style={{
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        backgroundColor: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+        [direction === 'left' ? 'left' : 'right']: '-60px'
+      }}
     >
       {direction === "left" ? (
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -49,14 +67,17 @@ const Arrow = ({ direction, onClick, disabled }) => {
   )
 }
 
-const Carousel = ({ children, slidesToShow = 3, ...props }) => {
+const Carousel = ({ children, slidesToShow = 5, ...props }) => {
   const sliderRef = useRef(null)
   const wrapperRef = useRef(null)
   const [current, setCurrent] = useState(0)
-  const [visibleSlides, setVisibleSlides] = useState(slidesToShow)
   const [containerHeight, setContainerHeight] = useState(0)
+  const [showArrows, setShowArrows] = useState(true)
 
   const slideCount = React.Children.count(children)
+  const [visibleSlides, setVisibleSlides] = useState(
+    Math.min(slidesToShow, slideCount)
+  )  
 
   // Ajusta altura automaticamente com base no maior slide
   useLayoutEffect(() => {
@@ -81,43 +102,91 @@ const Carousel = ({ children, slidesToShow = 3, ...props }) => {
 
   React.useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) setVisibleSlides(1)
-      else if (window.innerWidth < 1024) setVisibleSlides(2)
-      else setVisibleSlides(slidesToShow)
+      if (window.innerWidth < 768) {
+        setVisibleSlides(Math.min(1, slideCount))
+        setShowArrows(false)
+      } else {
+        setShowArrows(true)
+        if (window.innerWidth < 1300) setVisibleSlides(Math.min(2, slideCount))
+        else if (window.innerWidth < 1400) setVisibleSlides(Math.min(3, slideCount))
+        else if (window.innerWidth < 1800) setVisibleSlides(Math.min(4, slideCount))
+        else setVisibleSlides(Math.min(slidesToShow, slideCount))
+      }
     }
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [slidesToShow])
+  }, [slidesToShow, slideCount])
 
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: false, // Desabilitado para controle manual preciso
     speed: 500,
     slidesToShow: visibleSlides,
-    adaptativeHeight: true,
-    arrows: false,
+    slidesToScroll: visibleSlides, // Move a quantidade de slides visíveis
+    adaptiveHeight: false, // Desabilitado para evitar problemas de altura
+    arrows: false, // Usando setas customizadas
+    centerMode: false,
+    variableWidth: false,
     beforeChange: (_, next) => setCurrent(next),
     ...props
   }
 
+  const goToPrevious = () => {
+    if (sliderRef.current) {
+      const newIndex = Math.max(0, current - visibleSlides)
+      sliderRef.current.slickGoTo(newIndex)
+    }
+  }
+
+  const goToNext = () => {
+    if (sliderRef.current) {
+      const remainingSlides = slideCount - current - visibleSlides
+      const slidesToMove = remainingSlides < visibleSlides ? remainingSlides : visibleSlides
+      const newIndex = Math.min(slideCount - visibleSlides, current + slidesToMove)
+      sliderRef.current.slickGoTo(newIndex)
+    }
+  }
+
+  const canGoNext = current < slideCount - visibleSlides
+  const canGoPrev = current > 0
+
   return (
-    <div style={{ overflow: 'visible', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ position: 'relative' }}>
-        <Arrow
-          direction="left"
-          onClick={() => sliderRef.current?.slickGoTo(Math.max(0, current - visibleSlides))}
-          disabled={current === 0}
-        />
-        <Arrow
-          direction="right"
-          onClick={() => sliderRef.current?.slickGoTo(Math.min(slideCount - visibleSlides, current + visibleSlides))}
-          disabled={current >= slideCount - visibleSlides || slideCount <= visibleSlides}
-        />
-        <div ref={wrapperRef} style={{ minHeight: containerHeight }}>
+    <div style={{ 
+      overflow: 'visible', 
+      position: 'relative', 
+      display: 'flex', 
+      flexDirection: 'column',
+      width: '100%'
+    }}>
+      <div style={{ position: 'relative', width: '100%' }}>
+        {showArrows && (
+          <>
+            <Arrow
+              direction="left"
+              onClick={goToPrevious}
+              disabled={!canGoPrev}
+            />
+          <Arrow
+            direction="right"
+            onClick={goToNext}
+            disabled={!canGoNext}
+          />
+        </>
+        )}
+        <div 
+          ref={wrapperRef} 
+          style={{ 
+            minHeight: containerHeight,
+            width: '100%',
+            margin: '0 auto'
+          }}
+        >
           <Slider ref={sliderRef} {...settings}>
-            {React.Children.map(children, child => (
-              <div className="px-4">{child}</div>
+            {React.Children.map(children, (child, index) => (
+              <div key={index} style={{ padding: '0 8px' }}>
+                {child}
+              </div>
             ))}
           </Slider>
         </div>

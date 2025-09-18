@@ -102,13 +102,13 @@ const Leituras = ({ hidePromotions = false }) => {
             </div>
 
             {/* Serviços do Oráculo */}
-            {currentOracle && (
+            {/* {currentOracle && (
               <OracleServices 
                 oracle={currentOracle}
                 activeCategory={activeCategory}
                 hidePromotions={hidePromotions}
               />
-            )}
+            )} */}
           </motion.div>
         </AnimatePresence>
       </div>

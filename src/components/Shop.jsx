@@ -1,3 +1,4 @@
+const categories = [...new Set(servicesData.map(s => s.category))]
 import React, { useState } from 'react'
 import { servicesData } from '../data/servicesData'
 import Card from './ui/Card'
@@ -5,21 +6,41 @@ import Carousel from './ui/Carousel'
 import { renderIcon } from '../utils/iconHelper'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
-const categories = [...new Set(servicesData.map(s => s.category))]
-
-function getLowestPrice(price) {
-  if (typeof price === 'string') return price
-  if (price.cigano) return price.cigano
-  if (price.tarot) return price.tarot
+function extractOracleField(card, field) {
+  // Se card.oracles existe, pega menor valor entre price/discount/originalPrice
+  if (card.oracles && typeof card.oracles === 'object') {
+    let values = []
+    for (const key in card.oracles) {
+      if (card.oracles[key] && typeof card.oracles[key] === 'object' && card.oracles[key][field]) {
+        values.push(card.oracles[key][field])
+      } else if (card.oracles[key] && typeof card.oracles[key] === 'string' && field === 'price') {
+        values.push(card.oracles[key])
+      }
+    }
+    // Se valores são strings tipo 'R$ 10,00', pega o menor
+    if (values.length) {
+      const nums = values.map(v => parseFloat(String(v).replace(/[^\d,]/g, '').replace(',', '.')))
+      const min = Math.min(...nums)
+      return `R$ ${min.toFixed(2).replace('.', ',')}`
+    }
+  }
   return ''
 }
 
-// Adicione função para originalPrice
-function getLowestOriginalPrice(originalPrice) {
-  if (!originalPrice) return ''
-  if (typeof originalPrice === 'string') return originalPrice
-  if (originalPrice.cigano) return originalPrice.cigano
-  if (originalPrice.tarot) return originalPrice.tarot
+function extractOracleDiscount(card) {
+  if (card.oracles && typeof card.oracles === 'object') {
+    let values = []
+    for (const key in card.oracles) {
+      if (card.oracles[key] && typeof card.oracles[key] === 'object' && card.oracles[key].discount) {
+        values.push(card.oracles[key].discount)
+      }
+    }
+    if (values.length) {
+      const nums = values.map(v => parseFloat(String(v).replace(/[^\d,]/g, '').replace(',', '.')))
+      const min = Math.min(...nums)
+      return min
+    }
+  }
   return ''
 }
 
@@ -36,8 +57,13 @@ const Shop = () => {
               if (a.title.toLowerCase().includes('sim ou não')) return -1
               if (b.title.toLowerCase().includes('sim ou não')) return 1
               // Menor preço (preferencialmente cigano)
-              const priceA = parseFloat(getLowestPrice(a.price).replace(/[^\d,]/g, '').replace(',', '.'))
-              const priceB = parseFloat(getLowestPrice(b.price).replace(/[^\d,]/g, '').replace(',', '.'))
+              let priceA = 0, priceB = 0
+              if (a.oracles) priceA = parseFloat(extractOracleField(a, 'price').replace(/[^\d,]/g, '').replace(',', '.'))
+              else if (a.cigano) priceA = parseFloat(a.cigano.price.replace(/[^\d,]/g, '').replace(',', '.'))
+              else if (a.tarot) priceA = parseFloat(a.tarot.price.replace(/[^\d,]/g, '').replace(',', '.'))
+              if (b.oracles) priceB = parseFloat(extractOracleField(b, 'price').replace(/[^\d,]/g, '').replace(',', '.'))
+              else if (b.cigano) priceB = parseFloat(b.cigano.price.replace(/[^\d,]/g, '').replace(',', '.'))
+              else if (b.tarot) priceB = parseFloat(b.tarot.price.replace(/[^\d,]/g, '').replace(',', '.'))
               return priceA - priceB
             })
 
@@ -48,15 +74,30 @@ const Shop = () => {
               </h3>
               <div className="relative flex items-center">
                 <Carousel slidesToShow={5} >
-                {cards.map(card => (
+                {cards.map(card => {
+                  let price = '', originalPrice = '', discount = ''
+                  if (card.oracles) {
+                    price = extractOracleField(card, 'price')
+                    originalPrice = '' // Se quiser mostrar original, pode adaptar
+                    discount = extractOracleDiscount(card)
+                  } else if (card.cigano) {
+                    price = card.cigano.price
+                    originalPrice = ''
+                    discount = card.cigano.discount || ''
+                  } else if (card.tarot) {
+                    price = card.tarot.price
+                    originalPrice = ''
+                    discount = card.tarot.discount || ''
+                  }
+                  return (
                     <div className="h-100 flex items-center justify-center p-4" key={card.title}>
                       <Card
                         title={card.title}
-                        description={card.description}                    
-                        price={getLowestPrice(card.price)}
-                        originalPrice={getLowestOriginalPrice(card.originalPrice)}
+                        description={card.description}
+                        price={price}
+                        originalPrice={originalPrice}
+                        discount={discount}
                         icon={card.icon ? renderIcon(card.icon, { size: 32, className: "text-gold mb-2" }) : null}
-                        hasDiscount={!!card.hasDiscount}
                         destacado={!!card.destacado}
                         badgeText={card.badgeText}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +112,8 @@ const Shop = () => {
                         viewport={{ once: true }}
                       />
                     </div>
-                  ))}
+                  )
+                })}
                 </Carousel>
               </div>
             </div>
@@ -81,5 +123,9 @@ const Shop = () => {
     </section>
   )
 }
-
 export default Shop
+
+
+
+
+

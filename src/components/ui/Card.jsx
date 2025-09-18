@@ -1,58 +1,74 @@
 import { motion } from 'framer-motion'
 
+
 const Card = ({
   title,
   description,
   price,
   originalPrice,
+  discount,
   icon,
   variant = 'preco',
   className = '',
   indisponivel = false,
-  hasDiscount = false,
   badgeText,
   destacado = false,
   popularText = '⭐ Mais Popular',
 }) => {
   const badge = badgeText !== undefined ? badgeText : 'indisponivel'
-  
-  return (
-  <motion.div
-    className={[
-      'relative bg-gradient-to-br from-primary/5 to-primary/10 backdrop-blur-sm border rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 w-full mx-auto flex flex-col',
-      // Altura fixa para todos os cards
-      'h-flexible min-h-[320px] max-h-[400px]',
-      destacado 
-        ? 'border-2 border-gold/80 border-pulse-animation bg-gradient-to-br from-gold/10 via-purple-dark/20 to-gold/10' 
-        : 'border-gold/20',
-      indisponivel && 'opacity-60 saturate-50',
-      className,
-    ].filter(Boolean).join(' ')}
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    whileHover={
-      indisponivel
-        ? {}
-        : { 
-            scale: 1.02, 
-            boxShadow: destacado 
-              ? '0 25px 50px -12px rgba(255, 215, 0, 0.4)' 
-              : '0 20px 40px -12px rgba(255, 215, 0, 0.3)',
-            borderColor: destacado 
-              ? 'rgba(255, 215, 0, 1)' 
-              : 'rgba(255, 215, 0, 0.4)'
-          }
+
+  // Calcula preço com desconto se houver discount
+  let finalPrice = price
+  let showDiscount = false
+  let originalToShow = originalPrice
+  if (discount && !indisponivel) {
+    // Aceita desconto como string 'R$ 2,00' ou número
+    let priceNum = typeof price === 'string' ? parseFloat(price.replace(/[^\d,]/g, '').replace(',', '.')) : price
+    let discountNum = typeof discount === 'string' ? parseFloat(discount.replace(/[^\d,]/g, '').replace(',', '.')) : discount
+    if (!isNaN(priceNum) && !isNaN(discountNum) && discountNum > 0) {
+      finalPrice = `R$ ${(priceNum - discountNum).toFixed(2).replace('.', ',')}`
+      originalToShow = price
+      showDiscount = true
     }
-    transition={{
-      duration: 0.7,
-      delay: 0.1,
-      scale: { duration: 0.3 },
-      boxShadow: { duration: 0.3 },
-    }}
-    viewport={{ once: true }}
-  >
-  {/* Container de Badges no Topo */}
-  <div className="absolute -top-2 left-0 right-0 flex justify-center items-center gap-1 z-10">
+  }
+
+  return (
+    <motion.div
+      className={[
+        'relative bg-gradient-to-br from-primary/5 to-primary/10 backdrop-blur-sm border rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 w-full mx-auto flex flex-col',
+        // Altura fixa para todos os cards
+        'h-flexible min-h-[320px] max-h-[400px]',
+        destacado
+          ? 'border-2 border-gold/80 border-pulse-animation bg-gradient-to-br from-gold/10 via-purple-dark/20 to-gold/10'
+          : 'border-gold/20',
+        indisponivel && 'opacity-60 saturate-50',
+        className,
+      ].filter(Boolean).join(' ')}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={
+        indisponivel
+          ? {}
+          : {
+              scale: 1.02,
+              boxShadow: destacado
+                ? '0 25px 50px -12px rgba(255, 215, 0, 0.4)'
+                : '0 20px 40px -12px rgba(255, 215, 0, 0.3)',
+              borderColor: destacado
+                ? 'rgba(255, 215, 0, 1)'
+                : 'rgba(255, 215, 0, 0.4)'
+            }
+      }
+      transition={{
+        duration: 0.7,
+        delay: 0.1,
+        scale: { duration: 0.3 },
+        boxShadow: { duration: 0.3 },
+      }}
+      viewport={{ once: true }}
+    >
+      {/* Container de Badges no Topo */}
+      <div className="absolute -top-2 left-0 right-0 flex justify-center items-center gap-1 z-10">
         {/* Badge Mais Popular */}
         {destacado && (
           <span className="bg-gold-gradient text-midnight px-3 py-1 rounded-full text-xs font-montserrat font-semibold uppercase tracking-wider shadow-lg">
@@ -61,7 +77,7 @@ const Card = ({
         )}
 
         {/* Badge de Desconto */}
-        {hasDiscount && !indisponivel && (
+        {showDiscount && !indisponivel && (
           <span className="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
             OFERTA
           </span>
@@ -87,22 +103,21 @@ const Card = ({
         </h3>
       </div>
 
-      
       {/* Preço - Sempre no bottom */}
-      {price && variant === 'preco' && (
+      {finalPrice && variant === 'preco' && (
         <div className="text-center mt-auto mb-4 pt-4">
-          {hasDiscount ? (
+          {showDiscount ? (
             <div className="relative">
               <p className="text-4xl text-primary/10 line-through font-light font-montserrat mb-1">
-                {originalPrice}
+                {originalToShow}
               </p>
               <p className={`text-xl font-bold font-montserrat relative -mt-5 ${destacado ? 'text-gold' : 'text-gold'}`}>
-                {price}
+                {finalPrice}
               </p>
             </div>
           ) : (
             <p className={`text-4xl font-bold font-montserrat ${destacado ? 'text-gold' : 'text-gold'}`}>
-              {price}
+              {finalPrice}
             </p>
           )}
         </div>
@@ -118,11 +133,10 @@ const Card = ({
         )}
       </div>
 
-
       {/* Efeito decorativo */}
       <div className={`absolute top-0 left-1 h-1 rounded-t-xl ${
-        destacado 
-          ? 'bg-gradient-to-r border-top-pulse from-gold/50 w-[97%] via-gold to-gold/50' 
+        destacado
+          ? 'bg-gradient-to-r border-top-pulse from-gold/50 w-[97%] via-gold to-gold/50'
           : 'bg-gradient-to-r from-transparent w-full via-gold/30 to-transparent'
       }`}></div>
     </motion.div>

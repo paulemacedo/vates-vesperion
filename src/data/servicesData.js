@@ -4,27 +4,29 @@ export const servicesData = [
     title: 'Sim ou não?',
     category: 'Respostas Rápidas',
     description: "Você recebe uma resposta direta (Sim, Não ou Talvez) e o direcionamento de uma carta-conselho.",
-    price: 'R$ 4,00',
-    icon: 'FaQuestionCircle',
-    ProgressiveDiscount: 'R$ 1,00',
-    maxDiscount: 'R$ 1,00',
+    icon: 'FaQuestion',
+    oracles: {
+      dados: {
+        price: 'R$ 4,00',
+        ProgressiveDiscount: 'R$ 1,00',
+        maxDiscount: 'R$ 2,00',
+      }
+    }
   },
   {
     title: 'Leitura Focada',
     category: 'Respostas Rápidas',
     description: "Para aquelas questões que pedem mais do que um 'sim' ou 'não', oferecendo uma análise detalhada com insights e conselhos práticos.",
     icon: 'BsBullseye',
-    price: {
-      tarot: 'R$ 12,00',
-      cigano: 'R$ 10,00'
+    cigano: {
+      price: 'R$ 10,00',
+      ProgressiveDiscount: 'R$ 1,00',
+      maxDiscount: 'R$ 10,00'
     },
-    ProgressiveDiscount: {
-      tarot: 'R$ 1,00',
-      cigano: 'R$ 1,00'
-    },
-    maxDiscount: {
-      tarot: 'R$ 10,00',
-      cigano: 'R$ 10,00'
+    tarot: {
+      price: 'R$ 12,00',
+      ProgressiveDiscount: 'R$ 1,00',
+      maxDiscount: 'R$ 10,00'
     },
   },
   {
@@ -32,41 +34,43 @@ export const servicesData = [
     category: 'Respostas Rápidas',
     description: 'Você recebe respostas diretas (Sim, Não ou Talvez) e o direcionamento de uma carta-conselho para cada pergunta.',
     icon: 'FaQuestion',
-    price: 'R$ 10,00',
-    originalPrice: 'R$ 12,00',
-    hasDiscount: true,
-    destacado: true,
+    oracles: {
+      dados: {
+        price: 'R$ 12,00',
+        discount: 'R$ 2,00',
+      },    },
   },
   {
     title: 'Leitura Focada 3x',
     category: 'Respostas Rápidas',
     description: 'Três perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
-    price: {
-      tarot: 'R$ 33,00',
-      cigano: 'R$ 27,00'
+    oracles: {
+      cigano: {
+        price: 'R$ 30,00',
+        discount: 'R$ 4,00',
+      },
+      tarot: {
+        price: 'R$ 36,00',
+        discount: 'R$ 4,00',
+      },
     },
-    originalPrice: {
-      tarot: 'R$ 36,00',
-      cigano: 'R$ 30,00'
-    },
-    hasDiscount: true,
-    destacado: true
   },
   {
     title: 'Leitura Focada 5x',
     category: 'Respostas Rápidas',
     description: 'Cinco perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
-    price: {
-      tarot: 'R$ 55,00',
-      cigano: 'R$ 45,00'
+    oracles: {
+      cigano: {
+        price: 'R$ 50,00',
+        discount: 'R$ 6,00',
+      },
+      tarot: {
+        price: 'R$ 60,00',
+        discount: 'R$ 6,00',
+      },
     },
-    originalPrice: {
-      tarot: 'R$ 60,00',
-      cigano: 'R$ 50,00'
-    },
-    hasDiscount: true,
     destacado: true
   },
   {
@@ -74,16 +78,16 @@ export const servicesData = [
     category: 'Respostas Rápidas',
     description: 'Dez perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
-    price: {
-      tarot: 'R$ 110,00',
-      cigano: 'R$ 90,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 110,00',
+        discount: 'R$ 11,00',
+      },
+      cigano: {
+        price: 'R$ 90,00',
+        discount: 'R$ 11,00',
+      },
     },
-    originalPrice: {
-      tarot: 'R$ 120,00',
-      cigano: 'R$ 100,00'
-    },
-    hasDiscount: true,
-    destacado: true
   },
 
   // Tiragens Especiais
@@ -93,9 +97,13 @@ export const servicesData = [
     subcategory: 'Planejamento & Visão Global',
     description: 'Seu guia para os próximos 7 dias. Receba clareza sobre a energia da semana, o principal desafio e o melhor conselho para navegar sua jornada com consciência.',
     icon: 'FaCompass',
-    price: {
-      tarot: 'R$ 20,00',
-      cigano: 'R$ 18,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 20,00',
+      },
+      cigano: {
+        price: 'R$ 18,00',
+      },
     },
   },
   {
@@ -104,9 +112,13 @@ export const servicesData = [
     subcategory: 'Planejamento & Visão Global',
     description: 'Um planejamento completo para o seu mês. Revele a energia central, as oportunidades e desafios, e receba conselhos focados para as áreas do amor e da prosperidade.',
     icon: 'BsCalendarMonth',
-    price: {
-      tarot: 'R$ 40,00',
-      cigano: 'R$ 35,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 40,00',
+      },
+      cigano: {
+        price: 'R$ 35,00',
+      },
     },
   },
   {
@@ -115,9 +127,13 @@ export const servicesData = [
     subcategory: 'Planejamento & Visão Global',
     description: 'Leitura completa de 12 áreas da vida para clareza, equilíbrio e direcionamento.',
     icon: 'GiHeraldicSun',
-    price: {
-      tarot: 'R$ 65,00',
-      cigano: 'R$ 60,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 65,00',
+      },
+      cigano: {
+        price: 'R$ 60,00',
+      },
     },
   },
   {
@@ -126,9 +142,13 @@ export const servicesData = [
     subcategory: 'Amor',
     description: 'Investiga sentimentos, intenções e futuro amoroso entre você e outra pessoa.',
     icon: 'GiGreekTemple',
-    price: {
-      tarot: 'R$ 35,00',
-      cigano: 'R$ 30,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 35,00',
+      },
+      cigano: {
+        price: 'R$ 30,00',
+      },
     },
   },
   {
@@ -137,9 +157,13 @@ export const servicesData = [
     subcategory: 'Amor',
     description: 'Para entender sua energia atual no amor e qual o próximo passo para se abrir a novas conexões.',
     icon: 'RiHeartAddLine',
-    price: {
-      tarot: 'R$ 35,00',
-      cigano: 'R$ 30,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 35,00',
+      },
+      cigano: {
+        price: 'R$ 30,00',
+      },
     },
   },
   {
@@ -148,9 +172,13 @@ export const servicesData = [
     subcategory: 'Amor',
     description: 'A análise mais profunda para casais (15 cartas), revelando a dinâmica e o futuro da união.',
     icon: 'FaMapMarkedAlt',
-    price: {
-      tarot: 'R$ 60,00',
-      cigano: 'R$ 55,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 60,00',
+      },
+      cigano: {
+        price: 'R$ 55,00'
+      },
     },
   },
   {
@@ -159,9 +187,13 @@ export const servicesData = [
     subcategory: 'Amor',
     description: 'Revela seus bloqueios, os caminhos e os potenciais para você encontrar um novo amor.',
     icon: 'BsSunrise',
-    price: {
-      tarot: 'R$ 60,00',
-      cigano: 'R$ 55,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 60,00',
+      },
+      cigano: {
+        price: 'R$ 55,00'
+      },
     },
   },
   {
@@ -170,9 +202,13 @@ export const servicesData = [
     subcategory: 'Amor',
     description: 'Explora desejos ocultos, obsessões, tentações e lições nas relações e na vida.',
     icon: 'FaFire',
-    price: {
-      tarot: 'R$ 50,00',
-      cigano: 'R$ 45,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 50,00',
+      },
+      cigano: {
+        price: 'R$ 45,00'
+      },
     },
   },
   {
@@ -181,9 +217,13 @@ export const servicesData = [
     subcategory: 'Amor',
     description: 'Análise clara e sem rodeios para te ajudar na difícil decisão de permanecer ou sair de uma relação. Revela os prós, contras e os futuros de cada caminho.',
     icon: 'GiCrossroad',
-    price: {
-      tarot: 'R$ 40,00',
-      cigano: 'R$ 35,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 40,00',
+      },
+      cigano: {
+        price: 'R$ 35,00'
+      },
     },
   },
   {
@@ -192,9 +232,13 @@ export const servicesData = [
     subcategory: 'Amor',
     description: 'Existe chance de volta? Esta leitura analisa o motivo da separação, os sentimentos atuais de ambos e o potencial real para uma reconciliação.',
     icon: 'GiBridge',
-    price: {
-      tarot: 'R$ 50,00',
-      cigano: 'R$ 45,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 50,00',
+      },
+      cigano: {
+        price: 'R$ 45,00'
+      },
     },
   },
   {
@@ -203,9 +247,13 @@ export const servicesData = [
     subcategory: 'Autoconhecimento & Relações',
     description: 'Revela o que a pessoa aparenta ser, quem ela realmente é, suas motivações e suas verdadeiras intenções.',
     icon: 'GiMirrorMirror',
-    price: {
-      tarot: 'R$ 35,00',
-      cigano: 'R$ 30,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 35,00',
+      },
+      cigano: {
+        price: 'R$ 30,00'
+      },
     },
   },
   {
@@ -214,9 +262,13 @@ export const servicesData = [
     subcategory: 'Autoconhecimento & Relações',
     description: 'Mostra vantagens, desafios e resultados de cada opção para ajudar sua decisão.',
     icon: 'FaDirections',
-    price: {
-      tarot: 'R$ 35,00',
-      cigano: 'R$ 30,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 35,00',
+      },
+      cigano: {
+        price: 'R$ 30,00'
+      },
     },
   },
   {
@@ -225,9 +277,13 @@ export const servicesData = [
     subcategory: 'Autoconhecimento & Relações',
     description: 'Uma análise completa sobre qualquer área da vida, revelando passado, presente, futuro, desafios e o melhor caminho.',
     icon: 'FaBookOpen',
-    price: {
-      tarot: 'R$ 70,00',
-      cigano: 'R$ 65,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 70,00',
+      },
+      cigano: {
+        price: 'R$ 65,00'
+      },
     },
   },
   {
@@ -236,9 +292,13 @@ export const servicesData = [
     subcategory: 'Financeiro & Carreiras',
     description: 'Avalia adaptação, ambiente, desafios e potencial de crescimento.',
     icon: 'GiPortal',
-    price: {
-      tarot: 'R$ 35,00',
-      cigano: 'R$ 30,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 35,00',
+      },
+      cigano: {
+        price: 'R$ 30,00'
+      },
     },
   },
   {
@@ -247,9 +307,13 @@ export const servicesData = [
     subcategory: 'Financeiro & Carreiras',
     description: 'Sente que sua carreira travou? Esta leitura revela seus talentos, bloqueios e os próximos passos para destravar seu crescimento profissional.',
     icon: 'FaLightbulb',
-    price: {
-      tarot: 'R$ 45,00',
-      cigano: 'R$ 40,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 45,00',
+      },
+      cigano: {
+        price: 'R$ 40,00'
+      },
     },
   },
   {
@@ -258,9 +322,13 @@ export const servicesData = [
     subcategory: 'Financeiro & Carreiras',
     description: 'Investiga sua jornada financeira, revelando desafios, lições e os próximos passos para o sucesso.',
     icon: 'FaMoneyBillWave',
-    price: {
-      tarot: 'R$ 55,00',
-      cigano: 'R$ 50,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 55,00',
+      },
+      cigano: {
+        price: 'R$ 50,00'
+      },
     },
   },
   {
@@ -269,9 +337,13 @@ export const servicesData = [
     subcategory: 'Financeiro & Carreiras',
     description: 'A clareza que todo empreendedor precisa. Uma análise focada para destravar o potencial do seu negócio e tomar decisões mais assertivas.',
     icon: 'FaBriefcase',
-    price: {
-      tarot: 'R$ 45,00',
-      cigano: 'R$ 40,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 45,00',
+      },
+      cigano: {
+        price: 'R$ 40,00'
+      },
     },
   },
   {
@@ -280,9 +352,13 @@ export const servicesData = [
     subcategory: 'Financeiro & Carreiras',
     description: 'Pensando em abrir seu próprio negócio? Esta leitura avalia a viabilidade da sua ideia, os desafios, o potencial de sucesso e se este é o momento certo para o seu salto.',
     icon: 'FaRocket',
-    price: {
-      tarot: 'R$ 45,00',
-      cigano: 'R$ 40,00'
+    oracles: {
+      tarot: {
+        price: 'R$ 45,00',
+      },
+      cigano: {
+        price: 'R$ 40,00'
+      },
     },
   },
 ];

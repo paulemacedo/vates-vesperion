@@ -108,10 +108,10 @@ const Card = ({
         <div className="text-center mt-auto mb-4 pt-4">
           {showDiscount ? (
             <div className="relative">
-              <p className="text-4xl text-primary/10 line-through font-light font-montserrat mb-1">
+              <p className="text-4xl text-primary/10 line-through font-lato mb-1">
                 {originalToShow}
               </p>
-              <p className={`text-xl font-bold font-montserrat relative -mt-5 ${destacado ? 'text-gold' : 'text-gold'}`}>
+              <p className={`text-xl font-bold font-montserrat relative -mt-4 ${destacado ? 'text-gold' : 'text-gold'}`}>
                 {finalPrice}
               </p>
             </div>

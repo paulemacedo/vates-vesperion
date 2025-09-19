@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { GiMoonBats } from 'react-icons/gi'
-import Button from './Button'
+import Button from '../common/Button'
 
 const HeroContent = ({
   title,

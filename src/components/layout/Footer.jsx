@@ -1,5 +1,5 @@
 import { FaInstagram, FaWhatsapp, FaTiktok, FaYoutube, FaEnvelope } from "react-icons/fa";
-import Button from "./ui/Button";
+import Button from "../common/Button";
 import { motion } from 'framer-motion'
 
 
@@ -18,7 +18,7 @@ const socialLinks = [
 ];
 
 const Footer = () => (
-<footer className="w-full px-6 py-8 bg-midnight text-gold flex flex-col items-center gap-6">
+<footer className="w-full px-6 py-8 text-gold flex flex-col items-center gap-6 border-t border-gold/30">
   <motion.div
     className="flex gap-4"
     initial={{ opacity: 0, y: 30 }}

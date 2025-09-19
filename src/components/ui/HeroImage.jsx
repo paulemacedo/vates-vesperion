@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import Notification from './Notification'
+import Notification from '../common/Notification'
 
 const HeroImage = ({
   src,

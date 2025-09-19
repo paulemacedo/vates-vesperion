@@ -1,10 +1,12 @@
-const categories = [...new Set(servicesData.map(s => s.category))]
 import React, { useState } from 'react'
-import { servicesData } from '../data/servicesData'
-import Card from './ui/Card'
-import Carousel from './ui/Carousel'
-import { renderIcon } from '../utils/iconHelper'
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
+import { servicesData } from '../../data/servicesData'
+import Card from '../common/Card'
+import Carousel from '../common/Carousel'
+import { renderIcon } from '../../utils/iconHelper'
+import CategoryFilter from '../common/CategoryFilter'
+
+const categories = [...new Set(servicesData.map(s => s.category))]
+
 
 function extractOracleField(card, field) {
   // Se card.oracles existe, pega menor valor entre price/discount/originalPrice
@@ -50,31 +52,49 @@ const Shop = () => {
       <div className="max-w-8xl mx-auto">
         {categories.map(category => {
           // Filtra os serviços da categoria
-          const cards = servicesData
-            .filter(s => s.category === category)
-            .sort((a, b) => {
-              // "Sim ou não?" sempre primeiro
-              if (a.title.toLowerCase().includes('sim ou não')) return -1
-              if (b.title.toLowerCase().includes('sim ou não')) return 1
-              // Menor preço (preferencialmente cigano)
-              let priceA = 0, priceB = 0
-              if (a.oracles) priceA = parseFloat(extractOracleField(a, 'price').replace(/[^\d,]/g, '').replace(',', '.'))
-              else if (a.cigano) priceA = parseFloat(a.cigano.price.replace(/[^\d,]/g, '').replace(',', '.'))
-              else if (a.tarot) priceA = parseFloat(a.tarot.price.replace(/[^\d,]/g, '').replace(',', '.'))
-              if (b.oracles) priceB = parseFloat(extractOracleField(b, 'price').replace(/[^\d,]/g, '').replace(',', '.'))
-              else if (b.cigano) priceB = parseFloat(b.cigano.price.replace(/[^\d,]/g, '').replace(',', '.'))
-              else if (b.tarot) priceB = parseFloat(b.tarot.price.replace(/[^\d,]/g, '').replace(',', '.'))
-              return priceA - priceB
-            })
+          const cards = servicesData.filter(s => s.category === category)
+          // Extrai subcategorias únicas
+          const subcategories = [
+            ...new Set(cards.map(s => s.subcategory).filter(Boolean))
+          ].map(sc => ({ id: sc, name: sc }))
+          // Estado do filtro de subcategoria
+          const [activeSubcategory, setActiveSubcategory] = useState('')
+          // Filtra os cards pela subcategoria selecionada
+          const filteredCards = activeSubcategory
+            ? cards.filter(s => s.subcategory === activeSubcategory)
+            : cards
+
+          // Ordenação dos cards
+          const sortedCards = filteredCards.sort((a, b) => {
+            // "Sim ou não?" sempre primeiro
+            if (a.title.toLowerCase().includes('sim ou não')) return -1
+            if (b.title.toLowerCase().includes('sim ou não')) return 1
+            // Menor preço (preferencialmente cigano)
+            let priceA = 0, priceB = 0
+            if (a.oracles) priceA = parseFloat(extractOracleField(a, 'price').replace(/[^\d,]/g, '').replace(',', '.'))
+            else if (a.cigano) priceA = parseFloat(a.cigano.price.replace(/[^\d,]/g, '').replace(',', '.'))
+            else if (a.tarot) priceA = parseFloat(a.tarot.price.replace(/[^\d,]/g, '').replace(',', '.'))
+            if (b.oracles) priceB = parseFloat(extractOracleField(b, 'price').replace(/[^\d,]/g, '').replace(',', '.'))
+            else if (b.cigano) priceB = parseFloat(b.cigano.price.replace(/[^\d,]/g, '').replace(',', '.'))
+            else if (b.tarot) priceB = parseFloat(b.tarot.price.replace(/[^\d,]/g, '').replace(',', '.'))
+            return priceA - priceB
+          })
 
           return (
             <div key={category} className="mb-16">
               <h3 className="text-2xl sm:text-3xl md:text-4xl text-gold mb-2 uppercase tracking-wide font-vollkorn">
                 {category}
               </h3>
+              {subcategories.length > 0 && (
+                <CategoryFilter
+                  items={subcategories}
+                  activeItem={activeSubcategory}
+                  onItemChange={setActiveSubcategory}
+                />
+              )}
               <div className="relative flex items-center">
                 <Carousel slidesToShow={5} >
-                {cards.map(card => {
+                {sortedCards.map(card => {
                   let price = '', originalPrice = '', discount = ''
                   if (card.oracles) {
                     price = extractOracleField(card, 'price')
@@ -124,8 +144,3 @@ const Shop = () => {
   )
 }
 export default Shop
-
-
-
-
-

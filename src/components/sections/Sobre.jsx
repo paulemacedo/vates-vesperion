@@ -1,15 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import SEO from './ui/SEO'
 
 const Sobre = () => {
   return (
     <>
-      <SEO
-        title="Sobre Vates Vesperion - Sua Jornada Espiritual"
-        description="Conheça a história e experiência de Vates Vesperion nas artes divinatórias há mais de 15 anos."
-        image="/images/sobre-banner.jpg"
-      />
       <section id="sobre" className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
         <motion.h2

@@ -32,35 +32,6 @@ export const oracleData = {
       // { src: "/images/tarot-spread-2.jpg", caption: "Victorian Steampunk - Três Cartas" },
       // { src: "/images/tarot-spread-3.jpg", caption: "Ethereal Visions Luna - Mandala" }
     ],
-    services: [
-      {
-        iconType: 'GiCardPlay',
-        title: '1 pergunta',
-        price: 'R$ 12,00',
-        description: 'Leitura focada em uma questão específica com análise profunda.'
-      },
-      {
-        iconType: 'GiCardJoker',
-        title: '5 perguntas',
-        price: 'R$ 55,00',
-        originalPrice: 'R$ 60,00',
-        hasDiscount: true,
-        destacado: true,
-        description: 'Múltiplas questões para uma visão abrangente da situação.'
-      },
-      {
-        iconType: 'GiHeraldicSun',
-        title: 'Mandala da Vida',
-        price: 'R$ 65,00',
-        description: 'Leitura completa: amor, trabalho, saúde e espiritualidade.'
-      },
-      {
-        iconType: 'GiCrystalBall',
-        title: 'Cruz Celta',
-        price: 'R$ 80,00',
-        description: 'Análise detalhada de uma situação com foco no presente e futuro próximo.'
-      }
-    ]
   },
   cigano: {
     title: "Baralho Cigano",
@@ -73,29 +44,6 @@ export const oracleData = {
       // { src: "/images/cigano-spread-2.jpg", caption: "Império das Águas - Linha do Tempo" },
       // { src: "/images/cigano-spread-3.jpg", caption: "Império das Águas - Casa Astrológica" }
     ],
-    services: [
-      {
-        iconType: 'GiCardPlay',
-        title: '1 pergunta',
-        price: 'R$ 10,00',
-        description: 'Resposta direta e prática para sua dúvida.'
-      },
-      {
-        iconType: 'GiCardJoker',
-        title: '5 perguntas',
-        price: 'R$ 50,00',
-        originalPrice: 'R$ 60,00',
-        hasDiscount: true,
-        destacado: true,
-        description: 'Orientações práticas para múltiplas situações.'
-      },
-      {
-        iconType: 'GiHeraldicSun',
-        title: 'Mandala da Vida',
-        price: 'R$ 60,00',
-        description: 'Leitura completa com foco em amor, trabalho e vida social.'
-      }
-    ]
   },
   sibilla: {
     title: "Sibilla",

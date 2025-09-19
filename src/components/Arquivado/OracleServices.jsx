@@ -1,6 +1,6 @@
 import React from 'react'
-import Carousel from './Carousel'
-import Card from './Card'
+import Carousel from '../common/Carousel'
+import Card from '../common/Card'
 import { renderIcon } from '../../utils/iconHelper'
 
 const OracleServices = ({ oracle, activeCategory, hidePromotions = false }) => {

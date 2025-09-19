@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import HeroContent from './ui/HeroContent'
-import HeroImage from './ui/HeroImage'
-import HeroScrollIndicator from './ui/HeroScrollIndicator'
-import SEO from './ui/SEO'
+import HeroContent from '../ui/HeroContent'
+import HeroImage from '../ui/HeroImage'
+import HeroScrollIndicator from '../ui/HeroScrollIndicator'
+import SEO from '../../utils/SEO'
 
 const Hero = ({
   title = "VATES VESPERION",
@@ -22,7 +22,6 @@ const Hero = ({
 }) => {
   return (
     <>
-      <SEO {...seo} />
       <motion.section
         id="hero"
         className={`relative flex flex-col lg:flex-row-reverse items-center justify-center h-screen overflow-hidden px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto ${className}`}

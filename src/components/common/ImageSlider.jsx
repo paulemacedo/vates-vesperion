@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 
 const Arrow = ({ direction, onClick, disabled }) => {
   if (disabled) return null
-  
   return (
     <button
       className={`oracle-arrow ${direction === "left" ? "oracle-arrow-left" : "oracle-arrow-right"}`}
@@ -24,7 +23,19 @@ const Arrow = ({ direction, onClick, disabled }) => {
   )
 }
 
-const OracleImageSlider = ({ 
+/**
+ * Componente Slider de Imagens reutilizável
+ * @param {Array} images - Array de objetos {src, caption}
+ * @param {number} currentIndex - Índice atual
+ * @param {function} onNext - Função para avançar
+ * @param {function} onPrev - Função para voltar
+ * @param {function} onIndexChange - Função para mudar índice
+ * @param {boolean} autoPlay - Ativa autoplay
+ * @param {number} autoPlaySpeed - Intervalo do autoplay
+ * @param {boolean} showArrows - Mostra setas de navegação
+ * @param {ReactNode} fallback - Elemento para fallback de imagem
+ */
+const ImageSlider = ({ 
   images = [], 
   currentIndex = 0, 
   onNext, 
@@ -32,41 +43,33 @@ const OracleImageSlider = ({
   onIndexChange,
   autoPlay = true,
   autoPlaySpeed = 4000,
-  showArrows = false
+  showArrows = false,
+  fallback = null
 }) => {
   const intervalRef = useRef(null)
 
-  // Early return if no images
   if (!images || !Array.isArray(images) || images.length === 0) {
-    return (
+    return fallback || (
       <div className="w-full h-64 bg-gold/10 rounded-lg flex items-center justify-center">
         <p className="text-gold/60">Nenhuma imagem disponível</p>
       </div>
     )
   }
 
-  // Auto play functionality
   useEffect(() => {
     if (autoPlay && images.length > 1) {
       intervalRef.current = setInterval(() => {
         onNext()
       }, autoPlaySpeed)
-
       return () => {
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current)
-        }
+        if (intervalRef.current) clearInterval(intervalRef.current)
       }
     }
   }, [autoPlay, autoPlaySpeed, onNext, images.length])
 
-  // Pause auto play on hover
   const handleMouseEnter = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
+    if (intervalRef.current) clearInterval(intervalRef.current)
   }
-
   const handleMouseLeave = () => {
     if (autoPlay && images.length > 1) {
       intervalRef.current = setInterval(() => {
@@ -86,8 +89,7 @@ const OracleImageSlider = ({
           src={images[currentIndex].src}
           alt={images[currentIndex].caption}
           className="w-full h-full object-cover"
-          onError={(e) => {
-            // Fallback para quando a imagem não carregar
+          onError={e => {
             e.target.style.display = 'none'
             e.target.nextSibling.style.display = 'flex'
           }}
@@ -102,24 +104,12 @@ const OracleImageSlider = ({
           </div>
         </div>
       </div>
-
-      {/* Controles */}
       {showArrows && (
         <>
-          <Arrow
-            direction="left"
-            onClick={onPrev}
-            disabled={images.length <= 1}
-          />
-          <Arrow
-            direction="right"
-            onClick={onNext}
-            disabled={images.length <= 1}
-          />
+          <Arrow direction="left" onClick={onPrev} disabled={images.length <= 1} />
+          <Arrow direction="right" onClick={onNext} disabled={images.length <= 1} />
         </>
       )}
-
-      {/* Indicadores */}
       <div className="flex justify-center space-x-2 mt-4">
         {images.map((_, index) => (
           <button
@@ -129,7 +119,6 @@ const OracleImageSlider = ({
           />
         ))}
       </div>
-
       <p className="text-center text-gold/80 text-sm mt-3 font-medium">
         {images[currentIndex]?.caption || 'Sem legenda'}
       </p>
@@ -137,4 +126,4 @@ const OracleImageSlider = ({
   )
 }
 
-export default OracleImageSlider
+export default ImageSlider

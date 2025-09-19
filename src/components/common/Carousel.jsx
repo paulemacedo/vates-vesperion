@@ -3,6 +3,61 @@ import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
+
+const customArrowStyle = `
+  .slick-arrow {
+    display: none !important;
+  }
+  .slick-dots li button:before {
+    color: gold !important;
+    opacity: 0.3 !important;
+  }
+  .slick-dots li.slick-active button:before {
+    color: gold !important;
+    opacity: 1 !important;
+  }
+  .slick-slide {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+  .slick-track {
+    display: flex !important;
+    align-items: flex-start !important; 
+    margin-left: 0 !important; 
+  }
+  .slick-slide > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start; 
+    justify-content: flex-start !important; 
+    box-sizing: border-box;
+  }
+  .slick-list {
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Remove espaçamentos extras */
+  .slick-slide {
+    margin: 0 !important;
+    padding: 0 8px !important; /* Apenas padding lateral controlado */
+  }
+  
+  /* Primeira slide sem padding à esquerda */
+  .slick-slide:first-child {
+    padding-left: 0 !important;
+  }
+  
+  /* Última slide sem padding à direita */
+  .slick-slide:last-child {
+    padding-right: 0 !important;
+  }
+`
+
 const Arrow = ({ direction, onClick, disabled }) => {
   if (disabled) return null
   return (
@@ -61,7 +116,12 @@ const Carousel = ({ children, slidesToShow = 5, ...props }) => {
     return () => observer.disconnect()
   }, [children, visibleSlides])
 
-
+  React.useEffect(() => {
+    const styleTag = document.createElement('style')
+    styleTag.innerHTML = customArrowStyle
+    document.head.appendChild(styleTag)
+    return () => document.head.removeChild(styleTag)
+  }, [])
 
   React.useEffect(() => {
     const handleResize = () => {

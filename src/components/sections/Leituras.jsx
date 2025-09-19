@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setActiveCategory } from '../../redux/slices/leituraSlice'
 import { motion, AnimatePresence } from 'framer-motion'
 import { categories, oracleData } from '../../data/oracleData'
+import { servicesData } from '../../data/servicesData'
 import CategoryFilter from '../common/CategoryFilter'
 import ImageSlider from '../common/ImageSlider'
 import OracleServices from '../Arquivado/OracleServices'
@@ -13,6 +14,26 @@ const Leituras = ({ hidePromotions = false }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const currentOracle = oracleData[activeCategory]
+
+  // Função para contar serviços disponíveis por oráculo
+  const getServicesCount = (oracleType) => {
+    let count = 0
+    
+    servicesData.forEach(service => {
+      // Verifica se o serviço tem o oráculo especificado
+      if (service.oracles) {
+        // Para serviços com estrutura oracles.{tipo}
+        if (service.oracles[oracleType]) {
+          count++
+        }
+      } else if (service[oracleType]) {
+        // Para serviços com estrutura direta {tipo}
+        count++
+      }
+    })
+    
+    return count
+  }
 
   const nextImage = () => {
     if (!currentOracle || !currentOracle.images) return
@@ -116,7 +137,7 @@ const Leituras = ({ hidePromotions = false }) => {
                           {(activeCategory === 'sibilla' || activeCategory === 'runas') ? (
                             <>🔮 Em desenvolvimento</>
                           ) : (
-                            <>✨ 0 serviços disponíveis</>
+                            <>✨ {getServicesCount(activeCategory)} serviços disponíveis</>
                           )}
                         </div>
                       </div>

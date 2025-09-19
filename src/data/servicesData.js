@@ -6,7 +6,7 @@ export const servicesData = [
     description: "Você recebe uma resposta direta (Sim, Não ou Talvez) e o direcionamento de uma carta-conselho.",
     icon: 'FaQuestion',
     oracles: {
-      dados: {
+      cleromancia: {
         price: 'R$ 4,00',
         ProgressiveDiscount: 'R$ 1,00',
         maxDiscount: 'R$ 2,00',
@@ -35,7 +35,7 @@ export const servicesData = [
     description: 'Você recebe respostas diretas (Sim, Não ou Talvez) e o direcionamento de uma carta-conselho para cada pergunta.',
     icon: 'FaQuestion',
     oracles: {
-      dados: {
+      cleromancia: {
         price: 'R$ 12,00',
         discount: 'R$ 2,00',
       },    },

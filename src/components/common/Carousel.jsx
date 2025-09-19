@@ -17,18 +17,17 @@ const customArrowStyle = `
   }
   .slick-track {
     display: flex;
-    align-items: stretch;
+    align-items: flex-start;
   }
   .slick-slide {
     display: flex !important;
-    align-items: stretch;
+    align-items: flex-start;
   }
   .slick-slide > div {
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
   }
   .slick-list {
     overflow: hidden;

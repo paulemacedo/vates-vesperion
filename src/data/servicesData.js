@@ -3,6 +3,7 @@ export const servicesData = [
   {
     title: 'Sim ou não?',
     category: 'Respostas Rápidas',
+    subcategory: 'Sim ou Não',
     description: "Você recebe uma resposta direta (Sim, Não ou Talvez) e o direcionamento de uma carta-conselho.",
     icon: 'FaQuestion',
     oracles: {
@@ -16,6 +17,7 @@ export const servicesData = [
   {
     title: 'Leitura Focada',
     category: 'Respostas Rápidas',
+    subcategory: 'Leitura Focada',
     description: "Para aquelas questões que pedem mais do que um 'sim' ou 'não', oferecendo uma análise detalhada com insights e conselhos práticos.",
     icon: 'BsBullseye',
     cigano: {
@@ -32,6 +34,7 @@ export const servicesData = [
   {
     title: 'Sim ou Não 3x',
     category: 'Respostas Rápidas',
+    subcategory: 'Sim ou Não',
     description: 'Você recebe respostas diretas (Sim, Não ou Talvez) e o direcionamento de uma carta-conselho para cada pergunta.',
     icon: 'FaQuestion',
     oracles: {
@@ -43,6 +46,7 @@ export const servicesData = [
   {
     title: 'Leitura Focada 3x',
     category: 'Respostas Rápidas',
+    subcategory: 'Leitura Focada',
     description: 'Três perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
     oracles: {
@@ -59,6 +63,7 @@ export const servicesData = [
   {
     title: 'Leitura Focada 5x',
     category: 'Respostas Rápidas',
+    subcategory: 'Leitura Focada',
     description: 'Cinco perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
     oracles: {
@@ -76,6 +81,7 @@ export const servicesData = [
   {
     title: 'Leitura Focada 10x',
     category: 'Respostas Rápidas',
+    subcategory: 'Leitura Focada',
     description: 'Dez perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
     oracles: {

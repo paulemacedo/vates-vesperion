@@ -82,7 +82,7 @@ const Shop = () => {
 
           return (
             <div key={category} className="mb-16">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl text-gold mb-2 uppercase tracking-wide font-vollkorn">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl mb-3 text-gold mb-2 uppercase tracking-wide font-vollkorn">
                 {category}
               </h3>
               {subcategories.length > 0 && (

@@ -22,6 +22,9 @@ const bgClasses = ['bg-midnight', 'bg-purple-dark'];
 
 function MainPage() {
   useScrollOnParam('scroll', 'leituras')
+	useScrollOnParam('scroll', 'faq')
+	useScrollOnParam('scroll', 'depoimentos')
+
 
 	const seo = {
 		title: "Vates Vesperion - Leituras Oraculares Personalizadas",

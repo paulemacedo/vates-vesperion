@@ -37,7 +37,7 @@ const Card = ({
       className={[
         'relative bg-gradient-to-br from-primary/5 to-primary/10 backdrop-blur-sm border rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 w-full mx-auto flex flex-col',
         // Altura fixa para todos os cards
-        'h-flexible min-h-[320px] max-w-[310px]',
+        ' min-h-[320px] max-w-[310px]',
         destacado
           ? 'border-2 border-gold/80 border-pulse-animation bg-gradient-to-br from-gold/10 via-purple-dark/20 to-gold/10'
           : 'border-gold/20',

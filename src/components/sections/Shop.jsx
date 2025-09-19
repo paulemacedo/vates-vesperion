@@ -96,7 +96,7 @@ const Shop = () => {
                   onItemChange={setActiveSubcategory}
                 />
               )}
-              <div className="relative flex items-center">
+              <div className="relative flex items-start mt-6">
                 <Carousel slidesToShow={5} >
                 {sortedCards.map(card => {
                   let price = '', originalPrice = '', discount = ''
@@ -114,7 +114,7 @@ const Shop = () => {
                     discount = card.tarot.discount || ''
                   }
                   return (
-                    <div className="h-100 flex items-center justify-center p-4" key={card.title}>
+                    <div className="h-full flex items-start justify-start py-2" key={card.title}>
                       <Card
                         title={card.title}
                         description={card.description}

@@ -3,37 +3,6 @@ import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-const customArrowStyle = `
-  .slick-arrow {
-    display: none !important;
-  }
-  .slick-dots li button:before {
-    color: gold !important;
-    opacity: 0.3 !important;
-  }
-  .slick-dots li.slick-active button:before {
-    color: gold !important;
-    opacity: 1 !important;
-  }
-  .slick-track {
-    display: flex;
-    align-items: flex-start;
-  }
-  .slick-slide {
-    display: flex !important;
-    align-items: flex-start;
-  }
-  .slick-slide > div {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-  }
-  .slick-list {
-    overflow: hidden;
-  }
-`
-
 const Arrow = ({ direction, onClick, disabled }) => {
   if (disabled) return null
   return (
@@ -92,12 +61,7 @@ const Carousel = ({ children, slidesToShow = 5, ...props }) => {
     return () => observer.disconnect()
   }, [children, visibleSlides])
 
-  React.useEffect(() => {
-    const styleTag = document.createElement('style')
-    styleTag.innerHTML = customArrowStyle
-    document.head.appendChild(styleTag)
-    return () => document.head.removeChild(styleTag)
-  }, [])
+
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -117,14 +81,22 @@ const Carousel = ({ children, slidesToShow = 5, ...props }) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [slidesToShow, slideCount])
 
+  // Reset do slider quando o conteúdo mudar (importante para filtros)
+  React.useEffect(() => {
+    if (sliderRef.current) {
+      setCurrent(0)
+      sliderRef.current.slickGoTo(0)
+    }
+  }, [children])
+
   const settings = {
-    dots: true,
-    infinite: false, // Desabilitado para controle manual preciso
+    dots: slideCount > visibleSlides, // Só mostra dots se precisar
+    infinite: false,
     speed: 500,
     slidesToShow: visibleSlides,
-    slidesToScroll: visibleSlides, // Move a quantidade de slides visíveis
-    adaptiveHeight: false, // Desabilitado para evitar problemas de altura
-    arrows: false, // Usando setas customizadas
+    slidesToScroll: visibleSlides, // Volta a mover quantidade de slides visíveis
+    adaptiveHeight: false,
+    arrows: false,
     centerMode: false,
     variableWidth: false,
     beforeChange: (_, next) => setCurrent(next),
@@ -150,14 +122,23 @@ const Carousel = ({ children, slidesToShow = 5, ...props }) => {
   const canGoNext = current < slideCount - visibleSlides
   const canGoPrev = current > 0
 
+  // Se há poucos slides, não precisa do carousel
+  if (slideCount <= visibleSlides) {
+    return (
+      <div className="w-full">
+        <div className="flex gap-8 justify-start items-start"> {/* 👈 gap-4 = 16px, mude para gap-2 (8px), gap-6 (24px), etc */}
+          {React.Children.map(children, (child, index) => (
+            <div key={index} className="flex-shrink-0">
+              {child}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div style={{ 
-      overflow: 'visible', 
-      position: 'relative', 
-      display: 'flex', 
-      flexDirection: 'column',
-      width: '100%'
-    }}>
+    <div className='w-full flex relative'>
       <div style={{ position: 'relative', width: '100%' }}>
         {showArrows && (
           <>
@@ -166,12 +147,12 @@ const Carousel = ({ children, slidesToShow = 5, ...props }) => {
               onClick={goToPrevious}
               disabled={!canGoPrev}
             />
-          <Arrow
-            direction="right"
-            onClick={goToNext}
-            disabled={!canGoNext}
-          />
-        </>
+            <Arrow
+              direction="right"
+              onClick={goToNext}
+              disabled={!canGoNext}
+            />
+          </>
         )}
         <div 
           ref={wrapperRef} 
@@ -183,7 +164,7 @@ const Carousel = ({ children, slidesToShow = 5, ...props }) => {
         >
           <Slider ref={sliderRef} {...settings}>
             {React.Children.map(children, (child, index) => (
-              <div key={index} style={{ padding: '0 8px' }}>
+              <div key={index}>
                 {child}
               </div>
             ))}

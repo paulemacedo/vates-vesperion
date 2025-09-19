@@ -1,11 +1,22 @@
 export const categories = [
   { id: 'tarot', name: 'Tarot' },
   { id: 'cigano', name: 'Baralho Cigano' },
-  { id: 'sibilla', name: 'Sibilla' },
-  { id: 'runas', name: 'Runas Nórdicas' }
+  // { id: 'sibilla', name: 'Sibilla' },
+  // { id: 'runas', name: 'Runas Nórdicas' },
+  { id: 'cleromancia', name: 'Cleromancia (Dados)' }
 ]
 
 export const oracleData = {
+  cleromancia: {
+    title: "Cleromancia (Dados)",
+    description: "A Cleromancia é uma antiga prática divinatória que utiliza dados para revelar insights e orientações. Cada face dos dados carrega um significado simbólico, permitindo interpretações variadas conforme a combinação obtida no lançamento. Esta técnica conecta o consulente com forças intuitivas e arquetípicas, oferecendo respostas claras e diretas.",
+    usage: "Ideal para questões de Sim ou Não, decisões rápidas e quando você busca uma orientação objetiva. A Cleromancia é excelente para momentos em que é necessário clareza imediata, ajudando a desvendar dúvidas simples do cotidiano com respostas diretas e práticas.",
+    images: [
+      // { src: "/images/oracles/cleromancia-1.jpg", caption: "Cleromancia - Dados" },
+      // { src: "/images/oracles/cleromancia-2.jpg", caption: "Cleromancia - Lançamento" },
+      // { src: "/images/oracles/cleromancia-3.jpg", caption: "Cleromancia - Interpretação" }
+    ],
+  },
   tarot: {
     title: "Tarot",
     description: "O Tarot é uma ferramenta ancestral de autoconhecimento composta por 78 cartas divididas em Arcanos Maiores e Menores. Cada carta carrega símbolos arquetípicos universais que falam diretamente ao inconsciente, revelando aspectos profundos da psique humana e do caminho espiritual.",
@@ -21,29 +32,6 @@ export const oracleData = {
       // { src: "/images/tarot-spread-2.jpg", caption: "Victorian Steampunk - Três Cartas" },
       // { src: "/images/tarot-spread-3.jpg", caption: "Ethereal Visions Luna - Mandala" }
     ],
-    services: [
-      {
-        iconType: 'GiCardPlay',
-        title: '1 pergunta',
-        price: 'R$ 12,00',
-        description: 'Leitura focada em uma questão específica com análise profunda.'
-      },
-      {
-        iconType: 'GiCardJoker',
-        title: '5 perguntas',
-        price: 'R$ 55,00',
-        originalPrice: 'R$ 60,00',
-        hasDiscount: true,
-        destacado: true,
-        description: 'Múltiplas questões para uma visão abrangente da situação.'
-      },
-      {
-        iconType: 'GiHeraldicSun',
-        title: 'Mandala da Vida',
-        price: 'R$ 65,00',
-        description: 'Leitura completa: amor, trabalho, saúde e espiritualidade.'
-      }
-    ]
   },
   cigano: {
     title: "Baralho Cigano",
@@ -56,29 +44,6 @@ export const oracleData = {
       // { src: "/images/cigano-spread-2.jpg", caption: "Império das Águas - Linha do Tempo" },
       // { src: "/images/cigano-spread-3.jpg", caption: "Império das Águas - Casa Astrológica" }
     ],
-    services: [
-      {
-        iconType: 'GiCardPlay',
-        title: '1 pergunta',
-        price: 'R$ 10,00',
-        description: 'Resposta direta e prática para sua dúvida.'
-      },
-      {
-        iconType: 'GiCardJoker',
-        title: '5 perguntas',
-        price: 'R$ 50,00',
-        originalPrice: 'R$ 60,00',
-        hasDiscount: true,
-        destacado: true,
-        description: 'Orientações práticas para múltiplas situações.'
-      },
-      {
-        iconType: 'GiHeraldicSun',
-        title: 'Mandala da Vida',
-        price: 'R$ 60,00',
-        description: 'Leitura completa com foco em amor, trabalho e vida social.'
-      }
-    ]
   },
   sibilla: {
     title: "Sibilla",

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
-import SEO from './ui/SEO'
 
 const perguntas = [
   {
@@ -48,11 +47,6 @@ const FAQ = () => {
 
   return (
     <>
-    <SEO
-        title="Perguntas Frequentes - Vates Vesperion"
-        description="Tire suas dúvidas sobre consultas oraculares, preços, prazos e métodos de leitura."
-        image="/images/faq-banner.jpg"
-    />
     <section id="faq" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-vollkorn text-gold mb-12 text-center uppercase tracking-wide">

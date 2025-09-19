@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setActiveCategory } from '../redux/slices/leituraSlice'
+import { setActiveCategory } from '../../redux/slices/leituraSlice'
 import { motion, AnimatePresence } from 'framer-motion'
-import { categories, oracleData } from '../data/oracleData'
-import CategoryFilter from './ui/CategoryFilter'
-import OracleImageSlider from './ui/OracleImageSlider'
-import OracleInfo from './ui/OracleInfo'
-import OracleServices from './ui/OracleServices'
-import SEO from './ui/SEO'
+import { categories, oracleData } from '../../data/oracleData'
+import CategoryFilter from '../common/CategoryFilter'
+import ImageSlider from '../common/ImageSlider'
+import OracleServices from '../Arquivado/OracleServices'
 
 const Leituras = ({ hidePromotions = false }) => {
   const activeCategory = useSelector(state => state.leitura.activeCategory)
@@ -38,10 +36,6 @@ const Leituras = ({ hidePromotions = false }) => {
 
   return (
     <>
-      <SEO
-        title="Vates Vesperion - Leituras Oraculares Personalizadas"
-        description="Consultas de Tarot, Baralho Cigano e oráculos. Descubra mensagens do universo com Vates Vesperion."
-      />
     <section id="leituras" className="py-12 px-4 sm:py-16 md:py-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -62,9 +56,11 @@ const Leituras = ({ hidePromotions = false }) => {
 
         {/* Filtro de Categorias */}
         <CategoryFilter 
-          categories={categories}
-          activeCategory={activeCategory}
-          onCategoryChange={handleCategoryChange}
+          items={categories}
+          activeItem={activeCategory}
+          onItemChange={handleCategoryChange}
+          badgeCondition={item => item.id === 'sibilla' || item.id === 'runas'}
+          className="mb-12"
         />
 
         <AnimatePresence mode="wait">
@@ -80,12 +76,15 @@ const Leituras = ({ hidePromotions = false }) => {
               {/* Slideshow */}
               <div className="order-2 lg:order-1">
                 {currentOracle && currentOracle.images && (
-                  <OracleImageSlider
+                  <ImageSlider
                     images={currentOracle.images}
                     currentIndex={currentImageIndex}
                     onNext={nextImage}
                     onPrev={prevImage}
                     onIndexChange={setCurrentImageIndex}
+                    autoPlay={true}
+                    autoPlaySpeed={4000}
+                    showArrows={false}
                   />
                 )}
               </div>
@@ -93,22 +92,50 @@ const Leituras = ({ hidePromotions = false }) => {
               {/* Informações do Oráculo */}
               <div className="order-1 lg:order-2">
                 {currentOracle && (
-                  <OracleInfo 
-                    oracle={currentOracle}
-                    activeCategory={activeCategory}
-                  />
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-3xl md:text-4xl text-gold font-vollkorn font-bold mb-4">
+                        {currentOracle.title}
+                      </h3>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-gold font-semibold mb-2">O que é:</h4>
+                          <p className="text-primary text-sm md:text-base leading-relaxed">
+                            {currentOracle.description}
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="text-gold font-semibold mb-2">Para que é útil:</h4>
+                          <p className="text-primary text-sm md:text-base leading-relaxed">
+                            {currentOracle.usage}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm">
+                          {(activeCategory === 'sibilla' || activeCategory === 'runas') ? (
+                            <>🔮 Em desenvolvimento</>
+                          ) : (
+                            <>✨ 0 serviços disponíveis</>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
 
-            {/* Serviços do Oráculo */}
-            {currentOracle && (
-              <OracleServices 
-                oracle={currentOracle}
-                activeCategory={activeCategory}
-                hidePromotions={hidePromotions}
-              />
-            )}
+            {/* CTA para loja de serviços */}
+            <div className="flex justify-center mt-8">
+              <a
+                href="/shop"
+                className="inline-block px-6 py-3 bg-gold text-purple-dark font-semibold rounded-full shadow-lg hover:bg-gold/80 transition text-lg"
+                style={{ textDecoration: 'none' }}
+              >
+                Ver todos os serviços na loja
+              </a>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>

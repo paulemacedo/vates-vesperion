@@ -1,34 +1,43 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setActiveCategory } from '../redux/slices/leituraSlice'
+import { setActiveCategory } from '../../redux/slices/leituraSlice'
 import { HiMenu, HiX, HiChevronDown} from 'react-icons/hi'
 import { motion, AnimatePresence } from 'framer-motion'
+import { categories as categories } from '../../data/oracleData'
+import { useLocation } from 'react-router-dom'
 
 const Header = () => {
+  const location = useLocation() 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServiceMenuOpen, setIsServiceMenuOpen] = useState(false)
   const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false) // Novo estado
   const dispatch = useDispatch()
 
-  const categories = [
-    { id: 'tarot', name: 'Tarot' },
-    { id: 'cigano', name: 'Baralho Cigano' },
-    { id: 'sibilla', name: 'Sibilla' },
-    { id: 'runas', name: 'Runas Nórdicas' }
-  ]
-
   const handleCategoryClick = (categoryId) => {
     dispatch(setActiveCategory(categoryId))
     setIsServiceMenuOpen(false)
     setIsMenuOpen(false)
-    setIsMobileSubmenuOpen(false) // Fechar submenu mobile
+    setIsMobileSubmenuOpen(false)
   }
 
   const navLinks = [
-    { href: '#hero', label: 'Home' },
-    { 
-      href: '#leituras', 
-      label: 'Leituras', 
+   {
+      key: 'shop',
+      href: location.pathname === '/shop' ? '#' : '/shop',
+      label: 'Loja',
+      onClick: location.pathname === '/shop' ? (e) => { e.preventDefault(); scrollToId('leituras') } : undefined
+    },
+    {
+      href: location.pathname === '/' ? '#hero' : '/',
+      label: 'Home',
+      onClick: location.pathname === '/' ? (e) => { e.preventDefault(); scrollToId('hero') } : undefined
+    },
+    {
+      href: location.pathname === '/' ? '#leituras' : '/?scroll=leituras',
+      label: 'Leituras',
+      onClick: location.pathname === '/' 
+        ? (e) => { e.preventDefault(); scrollToId('leituras') }
+        : undefined,
       hasSubmenu: true,
       submenu: (categories || []).map(category => ({
         href: `#leituras`,
@@ -36,8 +45,20 @@ const Header = () => {
         onClick: () => handleCategoryClick(category.id)
       })),
     },
-    { href: '#faq', label: 'FAQ' },
-    { href: '#depoimentos', label: 'Depoimentos' },
+{
+  href: location.pathname === '/' ? '#faq' : '/?scroll=faq',
+  label: 'FAQ',
+  onClick: location.pathname === '/' 
+    ? (e) => { e.preventDefault(); scrollToId('faq') }
+    : undefined,
+},
+{
+  href: location.pathname === '/' ? '#depoimentos' : '/?scroll=depoimentos',
+  label: 'Depoimentos',
+  onClick: location.pathname === '/' 
+    ? (e) => { e.preventDefault(); scrollToId('depoimentos') }
+    : undefined,
+},
   ]
 
   return (
@@ -49,14 +70,24 @@ const Header = () => {
           </a>
           
           {/* Desktop Navigation */}
-          <ul className="flex space-x-8 max-md:hidden">
+          <ul className="flex space-x-8 max-md:hidden items-center">
             {navLinks.map((link) => (
               <li 
-                key={link.href}
+                key={link.href || link.href}
                 className="relative group"
                 onMouseEnter={() => link.hasSubmenu && setIsServiceMenuOpen(true)}
                 onMouseLeave={() => link.hasSubmenu && setIsServiceMenuOpen(false)}
               >
+                {link.key === 'shop' ? (
+                <a
+                  href={link.href}
+                  onClick={link.onClick}
+                  className="bg-[#C27AFF]/20 px-3 py-2 rounded-md font-montserrat font-bold text-sm text-gold uppercase tracking-wider shadow-md hover:bg-purple-800 transition-colors flex items-center justify-center"
+                  style={{ letterSpacing: '2px' }}
+                >
+                  {link.label}
+                </a>
+                ) : (
                 <a 
                   href={link.href}
                   className="font-montserrat text-sm text-gold uppercase tracking-wider hover:opacity-70 transition-opacity flex items-center gap-1"
@@ -64,13 +95,13 @@ const Header = () => {
                   {link.label}
                   {link.hasSubmenu && <HiChevronDown className="text-xs" />}  
                 </a>
-
+                )}
                 {/* Desktop Submenu */}
                 {link.hasSubmenu && (
                   <AnimatePresence>
                     {isServiceMenuOpen && (
                       <motion.div
-                        className="absolute top-full left-0 mt-2 bg-midnight border border-gold/30 rounded-md shadow-lg min-w-[180px] py-2 z-[60]"
+                        className="absolute top-full left-0 mt-2 bg-midnight border border-gold/30 rounded-md shadow-lg min-w-[190px] py-2 z-[60]"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}

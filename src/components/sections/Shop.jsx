@@ -53,10 +53,14 @@ const Shop = () => {
         {categories.map(category => {
           // Filtra os serviços da categoria
           const cards = servicesData.filter(s => s.category === category)
-          // Extrai subcategorias únicas
-          const subcategories = [
+          // Extrai subcategorias únicas e adiciona "Todos"
+          const subcategoriesBase = [
             ...new Set(cards.map(s => s.subcategory).filter(Boolean))
           ].map(sc => ({ id: sc, name: sc }))
+          
+          const subcategories = subcategoriesBase.length > 0 
+            ? [{ id: '', name: 'Todos' }, ...subcategoriesBase]
+            : []
           // Estado do filtro de subcategoria
           const [activeSubcategory, setActiveSubcategory] = useState('')
           // Filtra os cards pela subcategoria selecionada

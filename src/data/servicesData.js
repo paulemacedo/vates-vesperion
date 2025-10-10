@@ -15,9 +15,9 @@ export const servicesData = [
     }
   },
   {
-    title: 'Leitura Focada',
+    title: 'Pergunta Detalhada',
     category: 'Respostas Rápidas',
-    subcategory: 'Leitura Focada',
+    subcategory: 'Pergunta Detalhada',
     description: "Para aquelas questões que pedem mais do que um 'sim' ou 'não', oferecendo uma análise detalhada com insights e conselhos práticos.",
     icon: 'BsBullseye',
     cigano: {
@@ -44,10 +44,10 @@ export const servicesData = [
       },    },
   },
   {
-    title: 'Leitura Focada 3x',
+    title: 'Pergunta Detalhada 3x',
     category: 'Respostas Rápidas',
-    subcategory: 'Leitura Focada',
-    description: 'Três perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
+    subcategory: 'Pergunta Detalhada',
+    description: 'Três perguntas detalhadas respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
     oracles: {
       cigano: {
@@ -61,10 +61,10 @@ export const servicesData = [
     },
   },
   {
-    title: 'Leitura Focada 5x',
+    title: 'Pergunta Detalhada 5x',
     category: 'Respostas Rápidas',
-    subcategory: 'Leitura Focada',
-    description: 'Cinco perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
+    subcategory: 'Pergunta Detalhada',
+    description: 'Cinco perguntas detalhadas respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
     oracles: {
       cigano: {
@@ -79,10 +79,10 @@ export const servicesData = [
     destacado: true
   },
   {
-    title: 'Leitura Focada 10x',
+    title: 'Pergunta Detalhada 10x',
     category: 'Respostas Rápidas',
-    subcategory: 'Leitura Focada',
-    description: 'Dez perguntas de Leitura Focada respondidas com uma análise detalhada e insights práticos.',
+    subcategory: 'Pergunta Detalhada',
+    description: 'Dez perguntas detalhadas respondidas com uma análise detalhada e insights práticos.',
     icon: 'BsBullseye',
     oracles: {
       tarot: {
@@ -100,7 +100,7 @@ export const servicesData = [
   {
     title: 'Bússola Semanal',
     category: 'Tiragens Especiais',
-    subcategory: 'Planejamento & Visão Global',
+    subcategory: 'Planejamento',
     description: 'Seu guia para os próximos 7 dias. Receba clareza sobre a energia da semana, o principal desafio e o melhor conselho para navegar sua jornada com consciência.',
     icon: 'FaCompass',
     oracles: {
@@ -115,7 +115,7 @@ export const servicesData = [
   {
     title: 'Bússola Mensal',
     category: 'Tiragens Especiais',
-    subcategory: 'Planejamento & Visão Global',
+    subcategory: 'Planejamento',
     description: 'Um planejamento completo para o seu mês. Revele a energia central, as oportunidades e desafios, e receba conselhos focados para as áreas do amor e da prosperidade.',
     icon: 'BsCalendarMonth',
     oracles: {
@@ -130,7 +130,7 @@ export const servicesData = [
   {
     title: 'Mandala da Vida',
     category: 'Tiragens Especiais',
-    subcategory: 'Planejamento & Visão Global',
+    subcategory: 'Direcionamento',
     description: 'Leitura completa de 12 áreas da vida para clareza, equilíbrio e direcionamento.',
     icon: 'GiHeraldicSun',
     oracles: {
@@ -158,7 +158,7 @@ export const servicesData = [
     },
   },
   {
-    title: 'Coração Aberto',
+    title: 'Aurora do Coração',
     category: 'Tiragens Especiais',
     subcategory: 'Amor',
     description: 'Para entender sua energia atual no amor e qual o próximo passo para se abrir a novas conexões.',
@@ -250,7 +250,7 @@ export const servicesData = [
   {
     title: 'Espelho da Confiança',
     category: 'Tiragens Especiais',
-    subcategory: 'Autoconhecimento & Relações',
+    subcategory: 'Relações',
     description: 'Revela o que a pessoa aparenta ser, quem ela realmente é, suas motivações e suas verdadeiras intenções.',
     icon: 'GiMirrorMirror',
     oracles: {
@@ -263,11 +263,11 @@ export const servicesData = [
     },
   },
   {
-    title: 'Escolha de Caminhos',
+    title: 'Ferradura',
     category: 'Tiragens Especiais',
-    subcategory: 'Autoconhecimento & Relações',
-    description: 'Mostra vantagens, desafios e resultados de cada opção para ajudar sua decisão.',
-    icon: 'FaDirections',
+    subcategory: 'Aprofundamento',
+    description: 'Para quem busca uma análise mais profunda e detalhada sobre qualquer área da vida, revelando padrões, desafios e o melhor caminho a seguir.',
+    icon: 'GiHorseshoe',
     oracles: {
       tarot: {
         price: 'R$ 35,00',
@@ -278,17 +278,17 @@ export const servicesData = [
     },
   },
   {
-    title: 'Leitura Profunda',
+    title: 'Cruz Celta',
     category: 'Tiragens Especiais',
-    subcategory: 'Autoconhecimento & Relações',
-    description: 'Uma análise completa sobre qualquer área da vida, revelando passado, presente, futuro, desafios e o melhor caminho.',
+    subcategory: 'Aprofundamento',
+    description: 'A leitura mais tradicional e completa do Tarô, oferecendo uma visão detalhada sobre qualquer área da vida.',
     icon: 'FaBookOpen',
     oracles: {
       tarot: {
-        price: 'R$ 70,00',
+        price: 'R$ 55,00',
       },
       cigano: {
-        price: 'R$ 65,00'
+        price: 'R$ 50,00'
       },
     },
   },

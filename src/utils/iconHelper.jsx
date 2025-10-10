@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaQuestionCircle, FaQuestion, FaCompass, FaMapMarkedAlt, FaFire, FaDirections, FaBookOpen, FaLightbulb, FaMoneyBillWave, FaBriefcase, FaRocket } from 'react-icons/fa'
 import { BsBullseye, BsCalendarMonth, BsSunrise } from 'react-icons/bs'
-import { GiGreekTemple, GiCrossroad, GiBridge, GiMirrorMirror, GiPortal, GiCardPlay, GiCardJoker, GiHeraldicSun, GiEclipse } from 'react-icons/gi'
+import { GiGreekTemple, GiCrossroad, GiBridge, GiMirrorMirror, GiPortal, GiCardPlay, GiCardJoker, GiHeraldicSun, GiEclipse, GiHorseshoe} from 'react-icons/gi'
 import { RiHeartAddLine } from 'react-icons/ri'
 
 const iconMap = {
@@ -24,6 +24,7 @@ const iconMap = {
   GiBridge,
   GiMirrorMirror,
   GiPortal,
+  GiHorseshoe,
   GiCardPlay,
   GiCardJoker,
   GiHeraldicSun,

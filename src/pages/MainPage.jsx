@@ -26,8 +26,8 @@ function MainPage() {
 	useScrollOnParam('scroll', 'depoimentos')
 
 	const seo = {
-		title: "Vates Vesperion - Leituras Oraculares Personalizadas",
-		description: "Consultas de Tarot, Baralho Cigano e oráculos. Descubra mensagens do universo com Vates Vesperion.",
+		title: "Vates Vesperion - Leituras Oraculares ",
+		description: "Consultas de Tarot, Baralho Cigano e Cleromancia. Descubra mensagens do universo com Vates Vesperion.",
 		image: "/hero-banner.png"
 	}
 

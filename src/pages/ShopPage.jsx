@@ -12,8 +12,8 @@ const bgClasses = ['bg-midnight', 'bg-purple-dark'];
 
 function ShopPage() {
   const seo = {
-    title: "Vates Vesperion - Leituras Oraculares Personalizadas",
-    description: "Consultas de Tarot, Baralho Cigano e oráculos. Descubra mensagens do universo com Vates Vesperion.",
+    title: "Vates Vesperion - Loja",
+    description: "Descubra nossos serviços de tarot e oráculos para orientação e autoconhecimento.",
     image: "/hero-banner.png"
   }
 

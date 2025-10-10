@@ -1,4 +1,4 @@
-import { FaInstagram, FaWhatsapp, FaTiktok, FaYoutube, FaEnvelope } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp, FaTiktok, FaFacebook, FaYoutube, FaEnvelope } from "react-icons/fa";
 import Button from "../common/Button";
 import { motion } from 'framer-motion'
 
@@ -14,6 +14,16 @@ const socialLinks = [
     href: "https://wa.me/5521972592555?text=Olá%2C+gostaria+de+agendar+uma+consulta!",
     label: "WhatsApp",
     icon: <FaWhatsapp size={20} />,
+  },
+  {
+    href: "https://www.tiktok.com/@vatesvesperion",
+    label: "TikTok",
+    icon: <FaTiktok size={20} />,
+  },
+  {
+    href: "https://www.facebook.com/vatesvesperion",
+    label: "Facebook",
+    icon: <FaFacebook size={20} />,
   },
 ];
 

@@ -4,14 +4,21 @@
   }
 
   html, body {
-    @apply scroll-smooth;
-    @apply overflow-x-hidden;
-    @apply h-full;
-    @apply scroll-mt-24;
-    @apply scrollbar-thin scrollbar-thumb-gold scrollbar-track-midnight; /* Estilo da barra de rolagem */
-  }
+    @apply scroll-smooth h-full scroll-mt-24;
+    @apply scrollbar-thin scrollbar-thumb-gold scrollbar-track-midnight scrollbar-thumb-rounded-full scrollbar-track-rounded-full;
+    @apply mt-16 pb-8;
+    /*  */
+    padding-top: 64px; /* Altura do Header */
+    padding-bottom: 32px; /* Espaço extra no rodapé */
 
+    /* Firefox-specific scrollbar support */
+    scrollbar-width: thin;
+    scrollbar-color: #d4af37 #0a0a12; /* thumb | track */
+  }
+  
   [id] {
     @apply scroll-mt-16;
   }
 }
+
+

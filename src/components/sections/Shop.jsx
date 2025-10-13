@@ -48,7 +48,7 @@ function extractOracleDiscount(card) {
 
 const Shop = () => {
   return (
-    <section id="store" className="mt-13 md:mt-7 mx-2 md:mx-16 py-12 px-4 sm:py-16 md:py-20 bg-midnight">
+    <section id="store" className="mt-7 md:mt-5 mx-2 md:mx-16 py-12 px-4 sm:py-16 md:py-20 bg-midnight">
       <div className="max-w-8xl mx-auto">
         {categories.map(category => {
           // Filtra os serviços da categoria

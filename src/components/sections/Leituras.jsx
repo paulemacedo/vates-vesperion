@@ -68,7 +68,7 @@ const Leituras = ({ hidePromotions = false }) => {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl text-gold mb-6 uppercase tracking-wide font-vollkorn">
-            Leituras Oraculares
+            Meus Oráculos
           </h2>
           <p className="text-primary text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
             Escolha seu oráculo e descubra os serviços disponíveis para cada tradição.
@@ -80,7 +80,7 @@ const Leituras = ({ hidePromotions = false }) => {
           items={categories}
           activeItem={activeCategory}
           onItemChange={handleCategoryChange}
-          badgeCondition={item => item.id === 'sibilla' || item.id === 'runas'}
+          badgeCondition={item => item.id === 'runas'}
           className="mb-12"
         />
 

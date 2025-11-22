@@ -1,7 +1,7 @@
 export const categories = [
   { id: 'tarot', name: 'Tarot' },
   { id: 'cigano', name: 'Baralho Cigano' },
-  // { id: 'sibilla', name: 'Sibilla' },
+  { id: 'sibilla', name: 'Sibilla' },
   // { id: 'runas', name: 'Runas Nórdicas' },
   { id: 'cleromancia', name: 'Cleromancia (Dados)' }
 ]

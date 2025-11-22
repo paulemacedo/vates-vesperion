@@ -24,7 +24,7 @@ const Header = () => {
    {
       key: 'shop',
       href: location.pathname === '/shop' ? '#' : '/shop',
-      label: 'Loja',
+      label: 'Catálogo ',
       onClick: location.pathname === '/shop' ? (e) => { e.preventDefault(); scrollToId('leituras') } : undefined
     },
     {
@@ -34,7 +34,7 @@ const Header = () => {
     },
     {
       href: location.pathname === '/' ? '#leituras' : '/?scroll=leituras',
-      label: 'Leituras',
+      label: 'Oraculos',
       onClick: location.pathname === '/' 
         ? (e) => { e.preventDefault(); scrollToId('leituras') }
         : undefined,

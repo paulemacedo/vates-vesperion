@@ -46,9 +46,9 @@ function extractOracleDiscount(card) {
   return ''
 }
 
-const Shop = () => {
+const Catalog = () => {
   return (
-    <section id="store" className="mt-7 md:mt-5 mx-2 md:mx-16 py-12 px-4 sm:py-16 md:py-20 bg-midnight">
+    <section id="store" className="mt-7 md:mt-5 mx-2 md:mx-16 py-12 px-4 sm:py-16 md:py-20">
       <div className="max-w-8xl mx-auto">
         {categories.map(category => {
           // Filtra os serviços da categoria
@@ -85,7 +85,7 @@ const Shop = () => {
           })
 
           return (
-            <div key={category} className="mb-16">
+            <div key={category} className="mb-16 max-w-7xl mx-auto">
               <h3 className="text-2xl sm:text-3xl md:text-4xl mb-3 text-gold  uppercase tracking-wide font-vollkorn">
                 {category}
               </h3>
@@ -97,7 +97,7 @@ const Shop = () => {
                 />
               )}
               <div className="relative flex items-start mt-6">
-                <Carousel slidesToShow={5} >
+                <Carousel slidesToShow={4} >
                 {sortedCards.map(card => {
                   let price = '', originalPrice = '', discount = ''
                   if (card.oracles) {
@@ -147,4 +147,4 @@ const Shop = () => {
     </section>
   )
 }
-export default Shop
+export default Catalog

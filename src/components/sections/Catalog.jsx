@@ -96,7 +96,7 @@ const Catalog = () => {
                   onItemChange={setActiveSubcategory}
                 />
               )}
-              <div className="relative flex items-start mt-6">
+              <div className="relative flex items-start mt-6 max-h-[700px]">
                 <Carousel slidesToShow={4} >
                 {sortedCards.map(card => {
                   let price = '', originalPrice = '', discount = ''

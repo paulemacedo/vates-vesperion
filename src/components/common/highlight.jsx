@@ -4,13 +4,12 @@ import Carousel from './Carousel'
 const Highlight = ({ promotions }) => {
   return (
     <section className="highlight-slideshow">
-      <div className="mx-auto px-4 max-w-screen-xl py-12">
+      <div className="mx-auto px-4 max-w-screen-xl py-12 flex justify-center items-center">
         <Carousel slidesToShow={1} autoplay>
           {promotions.map((promo, index) => (
             <div
               key={index}
               className="relative w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto"
-              
             >
               <img
                 src={promo.image}
